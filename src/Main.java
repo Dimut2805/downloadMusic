@@ -1,3 +1,5 @@
 public class Main {
-    //Проверка
+    public static void main(String[] args) {
+        FindUrl.findUrl();
+    }
 }
