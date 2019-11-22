@@ -4,16 +4,16 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
 public class DownloadMusic {
-    private static final String SITE_URL = "src\\inputFile.txt";
+    private static final String PATH_TO_MUSIC = "src\\music";
     private static final String URL_FOR_DOWNLOAD_MUSIC = "src\\outputFile.txt";
 
     DownloadMusic() {
-        try (BufferedReader musicFile = new BufferedReader(new FileReader(SITE_URL))) {
+        try (BufferedReader musicFile = new BufferedReader(new FileReader(URL_FOR_DOWNLOAD_MUSIC))) {
             String music;
             int count = 0;
             try {
                 while ((music = musicFile.readLine()) != null) {
-                    downloadMusic(music, URL_FOR_DOWNLOAD_MUSIC + String.valueOf(count) + ".mp3");
+                    downloadMusic(music, PATH_TO_MUSIC + String.valueOf(count) + ".mp3");
                     count++;
                 }
             } catch (IOException e) {

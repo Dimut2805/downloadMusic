@@ -6,13 +6,13 @@ public class FindUrl {
         String string;
         String string2;
         StringBuilder result = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src\\inputUrl.txt"));
-             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src\\downloadUrl.txt"))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src\\inputFile.txt"));
+             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src\\outputFile.txt"))) {
             while ((string = bufferedReader.readLine()) != null) {
                 URL url = new URL(string);
                 try (BufferedReader bufferedReader1 = new BufferedReader(new InputStreamReader(url.openStream()))) {
-                    while (((string2 = bufferedReader1.readLine()) != null)) {
-                        if (string2.contains("musicset-track-link") || string2.contains("class=\"play\"")) {
+                    while ((string2 = bufferedReader1.readLine()) != null) {
+                        if ((string2.contains("musicset-track-link") || string2.contains("class=\"play\""))) {
                             bufferedWriter.write(as(string2) + System.lineSeparator());
                         }
                     }
