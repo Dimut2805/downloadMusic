@@ -8,14 +8,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class DownloadUrl {
+/**
+ * Author Utin D. S 17it18
+ */
+public class DownloadUrl implements Constains{
+    /**
+     * Записывает ссылку на скачивание в текстовый файл
+     *
+     * @param urlFile
+     */
     public void writeDownloadUrl(String urlFile) {
         write(urlFile, Objects.requireNonNull(findDownloadUrl()));
     }
 
+    /**
+     * Ищет ссылку на скачивание в исходном коде страницы сайта
+     *
+     * @return список ссылок на скачивание
+     */
     private static List<String> findDownloadUrl() {
         List<String> downloadUrl = new ArrayList<>();
-        List<String> urlSites = read("src\\inputUrl.txt");
+        List<String> urlSites = read(INPUT_URL);
         assert urlSites != null;
         for (String stringUrlSite : urlSites) {
             URL url = createUrl(stringUrlSite);
@@ -33,6 +46,12 @@ public class DownloadUrl {
         return downloadUrl.size() != 0 ? downloadUrl : null;
     }
 
+    /**
+     * Создает URL сайта
+     *
+     * @param urlSite url сайта
+     * @return url сайта
+     */
     private static URL createUrl(String urlSite) {
         try {
             return new URL(urlSite);
@@ -42,6 +61,12 @@ public class DownloadUrl {
         return null;
     }
 
+    /**
+     * Записывает ссылки на скачивание в текстовый файл
+     *
+     * @param urlFile     путь к текстовому файлу для записи
+     * @param downloadUrl список ссылок на скачивание
+     */
     private static void write(String urlFile, List<String> downloadUrl) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(urlFile))) {
             for (String stringDownloadUrl : downloadUrl) {
@@ -52,6 +77,12 @@ public class DownloadUrl {
         }
     }
 
+    /**
+     * Читает из текстового файла url сайтов
+     *
+     * @param urlFile путь к текстовому файлу
+     * @return список ссылок сайтов
+     */
     private static List<String> read(String urlFile) {
         String urlSite;
         List<String> listUrl = new ArrayList<>();
