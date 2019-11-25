@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Launcher extends Application implements Constains {
@@ -24,15 +26,18 @@ public class Launcher extends Application implements Constains {
             TextField urlSiteTextField = new TextField();
             Label urlSiteLabel = new Label(SERVER);
             Button button = new Button("Найти");
+            FlowPane flowPane = new FlowPane();
+            FlowPane urlSiteNode = new FlowPane(urlSiteLabel, urlSiteTextField);
+            FlowPane masterNode = new FlowPane(Orientation.VERTICAL, urlSiteNode, text, button, flowPane);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    HashMap<String,String> hashMap = DownloadUrl.findAttributeMusic(SERVER + urlSiteTextField.getText());
-                    text.setText("Можно скачать: "+hashMap.get("author")+" - "+hashMap.get("nameMusic"));
+                    ArrayList<String[]> arrayList = DownloadUrl.findAttributeMusic(SERVER+urlSiteTextField.getText());
+                    for (String[] element : arrayList) {
+                        flowPane.getChildren().add(new Label(element[0]));
+                    };
                 }
             });
-            FlowPane urlSiteNode = new FlowPane(urlSiteLabel, urlSiteTextField);
-            FlowPane masterNode = new FlowPane(Orientation.VERTICAL, urlSiteNode, text, button);
             Scene scene = new Scene(masterNode);
             stage.setScene(scene);
             stage.setTitle("Downloader music (muzika.vip)");
