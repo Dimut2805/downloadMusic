@@ -1,6 +1,4 @@
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
@@ -13,7 +11,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Launcher extends Application implements Constains {
     private String siteUrl;
@@ -25,60 +22,59 @@ public class Launcher extends Application implements Constains {
     @Override
     public void start(Stage stage) {
         try {
-            Text text = new Text("Разделы");
-            text.setFont(Font.font(24));
-            ObservableList<String> observableList = FXCollections.observableArrayList("Не выбрано", "Топ-100",
-                    "Русский поп", "Русский рок", "Дабстэп");
-            HashMap<String, String> hashMap = new HashMap<>();
-            hashMap.put("Не выбрано", null);
-            hashMap.put("Топ-100", "https://muzika.vip");
-            hashMap.put("Русский поп", "https://muzika.vip/m-genres/русский-поп-7071");
-            hashMap.put("Русский рок", "https://muzika.vip/m-genres/русский-рок-7070");
-            hashMap.put("Дабстэп", "https://muzika.vip/m-genres/dubstep-7043");
-            ComboBox<String> comboBox = new ComboBox<>(observableList);
-            comboBox.setValue("Не выбрано");
-            comboBox.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    siteUrl = (hashMap.get(comboBox.getValue()));
-                }
-            });
-            Button button = new Button("Найти");
-            VBox musicBox = new VBox(10);
-            ScrollPane scrollPanePath = new ScrollPane();
-            scrollPanePath.setPrefViewportHeight(350);
-            scrollPanePath.setPrefViewportWidth(500);
-            ScrollPane scrollPaneMusic = new ScrollPane(musicBox);
-            scrollPaneMusic.setPrefViewportHeight(350);
-            scrollPaneMusic.setPrefViewportWidth(500);
-            HBox urlSiteBox = new HBox(text, comboBox, button);
-            VBox masterMusicBox = new VBox(urlSiteBox, scrollPaneMusic);
-            VBox masterPathBox = new VBox(new Label("Директория скачанной музыки"), scrollPanePath);
-            FlowPane masterNode = new FlowPane(masterMusicBox, masterPathBox);
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    if (musicBox.getChildren().size() != 0) {
-                        musicBox.getChildren().clear();
-                    }
-                    ArrayList<String[]> arrayList = DownloadUrl.findAttributeMusic(siteUrl);
-                    int i = 1;
-                    for (String[] element : arrayList) {
-                        Text text1 = new Text(i+". "+element[0]+" - "+element[1]);
-                        text1.setFont(Font.font(15));
-                        musicBox.getChildren().add(new HBox(text1, new Button("Cкачать")));
-                        i++;
-                    }
-                }
-            });
-            Scene scene = new Scene(masterNode);
-            stage.setScene(scene);
-            stage.setTitle("Downloader music (muzika.vip)");
-            stage.setWidth(1300);
-            stage.setHeight(500);
-            stage.show();
+            GUI rootGUI = new GUI("Downloader music (muzika.vip)", 1300, 500);
+            rootGUI.createGUI(stage, getMyScene());
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private Scene getMyScene() {
+        Text textSections = new Text("Разделы") {
+            {
+                setFont(Font.font(24));
+            }
+        };
+        ComboBox<String> comboBox = new ComboBox<>(OBSERVABLE_LIST_SITE_TABS) {{
+            setValue("Не выбрано");
+            setOnAction(actionEvent -> siteUrl = (HASH_MAP_SITE_TABS.get(getValue())));
+        }};
+        ScrollPane scrollPanePath = new ScrollPane() {
+            {
+                setPrefViewportHeight(350);
+                setPrefViewportWidth(500);
+            }
+        };
+        VBox vboxContentDownloadScrollPane = new VBox(10);
+        ScrollPane scrollPaneMusic = new ScrollPane(vboxContentDownloadScrollPane) {
+            {
+                setPrefViewportHeight(350);
+                setPrefViewportWidth(600);
+            }
+        };
+        Button buttonFindMusic = new Button("Найти") {{
+            setOnAction(new EventHandler<>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    if (vboxContentDownloadScrollPane.getChildren().size() != 0) {
+                        vboxContentDownloadScrollPane.getChildren().clear();
+                    }
+                    ArrayList<String[]> attributeMusic = DownloadUrl.findAttributeMusic(siteUrl);
+                    int numberMusic = 1;
+                    for (String[] elements : attributeMusic) {
+                        Text nameMusic = new Text(numberMusic + ". " + elements[0] + " - " + elements[1]) {{
+                            setFont(Font.font(15));
+                        }};
+                        Button buttonDownload = new Button("Cкачать");
+                        vboxContentDownloadScrollPane.getChildren().add(new HBox(nameMusic, buttonDownload));
+                        numberMusic++;
+                    }
+                }
+            });
+        }};
+        VBox masterPathBox = new VBox(new Label("Директория скачанной музыки"), scrollPanePath);
+        HBox hboxSearchBySections = new HBox(textSections, comboBox, buttonFindMusic);
+        VBox leftVBox = new VBox(hboxSearchBySections, scrollPaneMusic);
+        FlowPane rootNode = new FlowPane(leftVBox, masterPathBox);
+        return new Scene(rootNode);
     }
 }

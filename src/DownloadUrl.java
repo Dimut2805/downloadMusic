@@ -12,12 +12,12 @@ import java.util.ArrayList;
 public class DownloadUrl implements Constains {
 
     /**
-     * Ищет ссылку на скачивание в исходном коде страницы сайта
+     * Ищет атрибуты в исходном коде страницы сайта
      *
      * @return список ссылок на скачивание
      */
     public static ArrayList<String[]> findAttributeMusic(String url) {
-        ArrayList<String[]> arrayList = new ArrayList<>();
+        ArrayList<String[]> arrayListAttributesMusic = new ArrayList<>();
         if (url != null) {
             Document document = createDocumentHTML(url);
             Elements elementsCodeMusics = document.select("ul.unstyled.songs").select("li.item");
@@ -33,11 +33,11 @@ public class DownloadUrl implements Constains {
                     array[0] = artist;
                     array[1] = nameMusic;
                     array[2] = downloadUrl;
-                    arrayList.add(array);
+                    arrayListAttributesMusic.add(array);
                 }
             }
         }
-        return arrayList;
+        return arrayListAttributesMusic;
     }
 
     private static Document createDocumentHTML(String url) {
