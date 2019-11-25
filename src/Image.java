@@ -1,19 +1,20 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
-public class DownloadMusic {
-    private static final String PATH_TO_MUSIC = "src\\music";
-    private static final String URL_FOR_DOWNLOAD_MUSIC = "src\\outputFile.txt";
+public class Image implements Constains {
 
-    DownloadMusic() {
-        try (BufferedReader musicFile = new BufferedReader(new FileReader(URL_FOR_DOWNLOAD_MUSIC))) {
-            String music;
+    public void downloadImage() {
+        try (BufferedReader imageFile = new BufferedReader(new FileReader(DOWNLOAD_URL))) {
+            String image;
             int count = 0;
             try {
-                while ((music = musicFile.readLine()) != null) {
-                    downloadMusic(music, PATH_TO_MUSIC + String.valueOf(count) + ".mp3");
+                while ((image = imageFile.readLine()) != null) {
+                    download(image, PATH_TO_IMAGE + String.valueOf(count) + ".jpg");
                     count++;
                 }
             } catch (IOException e) {
@@ -25,7 +26,7 @@ public class DownloadMusic {
 
     }
 
-    private static void downloadMusic(String strUrl, String file) throws IOException {
+    private static void download(String strUrl, String file) throws IOException {
         URL url = new URL(strUrl);
         ReadableByteChannel byteChannel = Channels.newChannel(url.openStream());
         FileOutputStream stream = new FileOutputStream(file);
@@ -33,4 +34,5 @@ public class DownloadMusic {
         stream.close();
         byteChannel.close();
     }
+
 }
