@@ -1,11 +1,14 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+
 import java.util.HashMap;
 
 public interface Constains {
     String DOWNLOAD_URL = "src\\downloadUrl.txt";
-    HashMap<String,String> HASH_MAP_SITE_TABS = new HashMap<>() {
+    String PATH_TO_MUSIC = "src\\music";
+    String PATH_TO_IMAGE = "srs\\image";
+    HashMap<String,String> HASH_MAP_SITE_TABS = new HashMap<String,String>() {
         {
             put("Не выбрано", null);
             put("Топ-100", "https://muzika.vip");

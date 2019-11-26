@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Launcher extends Application implements Constains {
     private String siteUrl;
-
+    Song sound = new Song();
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -34,7 +34,7 @@ public class Launcher extends Application implements Constains {
                 setFont(Font.font(24));
             }
         };
-        ComboBox<String> comboBox = new ComboBox<>(OBSERVABLE_LIST_SITE_TABS) {{
+        ComboBox<String> comboBox = new ComboBox<String>(OBSERVABLE_LIST_SITE_TABS) {{
             setValue("Не выбрано");
             setOnAction(actionEvent -> siteUrl = (HASH_MAP_SITE_TABS.get(getValue())));
         }};
@@ -52,7 +52,7 @@ public class Launcher extends Application implements Constains {
             }
         };
         Button buttonFindMusic = new Button("Найти") {{
-            setOnAction(new EventHandler<>() {
+            setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     if (vboxContentDownloadScrollPane.getChildren().size() != 0) {
