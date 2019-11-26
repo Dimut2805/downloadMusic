@@ -1,3 +1,5 @@
+package ru.pochemuchki.musicproject;
+
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;

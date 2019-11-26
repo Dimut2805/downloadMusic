@@ -1,3 +1,5 @@
+package ru.pochemuchki.musicproject;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -65,7 +67,15 @@ public class Launcher extends Application implements Constains {
                         Text nameMusic = new Text(numberMusic + ". " + elements[0] + " - " + elements[1]) {{
                             setFont(Font.font(15));
                         }};
-                        Button buttonDownload = new Button("Cкачать");
+                        Song song = new Song();
+                        Button buttonDownload = new Button("Cкачать") {{
+                            setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent actionEvent) {
+                                    song.downloadSong(elements[2],elements[1]);
+                                }
+                            });
+                        }};
                         vboxContentDownloadScrollPane.getChildren().add(new HBox(nameMusic, buttonDownload));
                         numberMusic++;
                     }

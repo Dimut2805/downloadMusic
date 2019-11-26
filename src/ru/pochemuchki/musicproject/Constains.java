@@ -1,3 +1,5 @@
+package ru.pochemuchki.musicproject;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

@@ -1,3 +1,5 @@
+package ru.pochemuchki.musicproject;
+
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
