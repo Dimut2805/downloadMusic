@@ -6,22 +6,12 @@ import java.nio.channels.ReadableByteChannel;
 
 public class Song implements Constains {
 
-    public void downloadSong() {
-        try (BufferedReader musicFile = new BufferedReader(new FileReader(DOWNLOAD_URL))) {
-            String music;
-            int count = 0;
+    public void downloadSong(String downloadUrl,String name) {
             try {
-                while ((music = musicFile.readLine()) != null) {
-                    download(music, PATH_TO_MUSIC + String.valueOf(count) + ".mp3");
-                    count++;
-                }
-            } catch (IOException e) {
+                    download(downloadUrl, name + ".mp3");
+                } catch (IOException e) {
                 e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public void playSong() {
@@ -35,17 +25,9 @@ public class Song implements Constains {
             Thread.sleep(clip.getMicrosecondLength() / 1000);
             clip.stop();
             clip.close();
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private static void download(String strUrl, String file) throws IOException {

@@ -25,7 +25,6 @@ public class Image implements Constains {
         }
 
     }
-
     private static void download(String strUrl, String file) throws IOException {
         URL url = new URL(strUrl);
         ReadableByteChannel byteChannel = Channels.newChannel(url.openStream());
