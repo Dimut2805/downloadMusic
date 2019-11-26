@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public interface Constains {
     String DOWNLOAD_URL = "src\\downloadUrl.txt";
-    HashMap<String,String> HASH_MAP_SITE_TABS = new HashMap<>() {
+    HashMap<String, String> HASH_MAP_SITE_TABS = new HashMap<>() {
         {
             put("Не выбрано", null);
             put("Топ-100", "https://muzika.vip");
@@ -15,9 +15,9 @@ public interface Constains {
         }
     };
     ObservableList<String> OBSERVABLE_LIST_SITE_TABS = FXCollections.observableArrayList(
-                    "Не выбрано",
-                    "Топ-100",
-                    "Русский поп",
-                    "Русский рок",
-                    "Дабстэп");
+            "Не выбрано",
+            "Топ-100",
+            "Русский поп",
+            "Русский рок",
+            "Дабстэп");
 }
