@@ -8,6 +8,7 @@ public interface Constains {
     String DOWNLOAD_URL = "src\\downloadUrl.txt";
     String PATH_TO_MUSIC = "src\\music";
     String PATH_TO_IMAGE = "srs\\image";
+
     HashMap<String,String> HASH_MAP_SITE_TABS = new HashMap<String,String>() {
         {
             put("Не выбрано", null);

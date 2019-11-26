@@ -13,6 +13,7 @@ public class Song implements Constains {
                 e.printStackTrace();
             }
     }
+
 // ТЕСТОВЫЙ ВАРИАНТ
     public void playSong() {
         File soundFile = new File(PATH_TO_MUSIC);

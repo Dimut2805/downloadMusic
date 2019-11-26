@@ -19,6 +19,7 @@ public class Launcher extends Application implements Constains {
         Application.launch(args);
     }
 
+
     @Override
     public void start(Stage stage) {
         try {

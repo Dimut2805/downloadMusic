@@ -2,6 +2,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class GUI {
+
     String title;
     int width, height;
 
