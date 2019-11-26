@@ -7,7 +7,8 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
 public class Image implements Constains {
-
+// ТЕСТОВЫЙ ВАРИАНТ
+// НЕРАБОТАЕТ
     public void downloadImage() {
         try (BufferedReader imageFile = new BufferedReader(new FileReader(DOWNLOAD_URL))) {
             String image;
