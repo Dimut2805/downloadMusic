@@ -10,7 +10,7 @@ public interface Constains {
     String DOWNLOAD_URL = "src\\downloadUrl.txt";
     String PATH_TO_MUSIC = "src\\music";
     String PATH_TO_IMAGE = "srs\\image";
-    String PATH_MUSICS = "C:\\Users\\Dimut\\Music";
+    String PATH_MUSICS = "C:\\Users\\"+System.getProperty("user.name")+"\\Music";
 
 
     HashMap<String,String> HASH_MAP_SITE_TABS = new HashMap<String,String>() {
