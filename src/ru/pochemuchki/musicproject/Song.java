@@ -22,9 +22,9 @@ public class Song implements Constains {
             }
     }
 
-// ТЕСТОВЫЙ ВАРИАНТ
-    public void playSong() {
-        File soundFile = new File(PATH_TO_MUSIC);
+
+    public void playSong(String nameSong) {
+        File soundFile = new File(PATH_TO_MUSIC + nameSong );
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();
@@ -48,6 +48,7 @@ public class Song implements Constains {
         Files.copy(sound,Paths.get(PATH_TO_MUSIC + nameSound),REPLACE_EXISTING);
         stream.close();
         byteChannelForDownload.close();
+        Files.delete(sound);
     }
 
 }
