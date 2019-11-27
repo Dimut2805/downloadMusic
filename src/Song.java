@@ -3,6 +3,12 @@ import java.io.*;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class Song implements Constains {
 
@@ -31,13 +37,15 @@ public class Song implements Constains {
         }
     }
 
-    private static void download(String strUrl, String file) throws IOException {
+    private static void download(String strUrl, String nameSound) throws IOException {
         URL url = new URL(strUrl);
-        ReadableByteChannel byteChannel = Channels.newChannel(url.openStream());
-        FileOutputStream stream = new FileOutputStream(file);
-        stream.getChannel().transferFrom(byteChannel, 0, Long.MAX_VALUE);
+        ReadableByteChannel byteChannelForDownload = Channels.newChannel(url.openStream());
+        FileOutputStream stream = new FileOutputStream(nameSound);
+        stream.getChannel().transferFrom(byteChannelForDownload, 0, Long.MAX_VALUE);
+        Path sound = Paths.get(nameSound);
+        Files.copy(sound,Paths.get(PATH_TO_MUSIC + nameSound),REPLACE_EXISTING);
         stream.close();
-        byteChannel.close();
+        byteChannelForDownload.close();
     }
 
 }
