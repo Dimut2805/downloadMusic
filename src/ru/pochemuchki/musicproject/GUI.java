@@ -19,8 +19,20 @@ public class GUI implements Constains {
     private VBox vboxContentPathMusic = new VBox();
     private VBox vboxContentDownloadScrollPane = new VBox();
     private Directory directory = new Directory(PATH_MUSICS);
+    Stage stage;
+    String title;
+    int width, height;
 
     GUI(Stage stage, String title, int width, int height) {
+        this.stage = stage;
+        this.title = title;
+        this.width = width;
+        this.height = height;
+        vboxContentDownloadScrollPane = new VBox();
+        vboxContentPathMusic = new VBox();
+    }
+
+    public void createGUI() {
         stage.setTitle(title);
         stage.setWidth(width);
         stage.setHeight(height);
@@ -29,33 +41,25 @@ public class GUI implements Constains {
         stage.show();
     }
 
-    public void updatePathMusic() {
+    public void fillPathMusic() {
         if (vboxContentPathMusic.getChildren().size() != 0) {
             vboxContentPathMusic.getChildren().clear();
         }
-        vboxContentPathMusic.getChildren().add(fillPathMusic());
-    }
-
-    private VBox fillPathMusic() {
-        return new VBox(10) {
-            {
-                ArrayList<String> musicsPath = directory.getMusics();
-                int numberMusic = 1;
-                for (String music : musicsPath) {
-                    Text nameMusic = new Text(numberMusic + ". " + music) {{
-                        setFont(Font.font(15));
-                    }};
-                    Button buttonListenMusic = new Button("Слушать") {{
-                        setOnAction(event -> listenMusicButton());
-                    }};
-                    Button buttonDeleteMusic = new Button("Удалить") {{
-                        setOnAction(event -> deleteMusicButton(music));
-                    }};
-                    getChildren().add(new HBox(10, nameMusic, buttonListenMusic, buttonDeleteMusic));
-                    numberMusic++;
-                }
-            }
-        };
+        ArrayList<String> musicsPath = directory.getMusics();
+        int numberMusic = 1;
+        for (String music : musicsPath) {
+            Text nameMusic = new Text(numberMusic + ". " + music) {{
+                setFont(Font.font(15));
+            }};
+            Button buttonListenMusic = new Button("Слушать") {{
+                setOnAction(event -> listenMusicButton());
+            }};
+            Button buttonDeleteMusic = new Button("Удалить") {{
+                setOnAction(event -> deleteMusicButton(music));
+            }};
+            vboxContentPathMusic.getChildren().add(new HBox(10, nameMusic, buttonListenMusic, buttonDeleteMusic));
+            numberMusic++;
+        }
     }
 
     private Scene createRootScene() {
@@ -64,7 +68,7 @@ public class GUI implements Constains {
     }
 
     private VBox createRightScene() {
-        ScrollPane scrollPaneRightScene = new ScrollPane(fillPathMusic()) {
+        ScrollPane scrollPaneRightScene = new ScrollPane(vboxContentPathMusic) {
             {
                 setPrefViewportHeight(350);
                 setPrefViewportWidth(500);
@@ -82,8 +86,6 @@ public class GUI implements Constains {
         ComboBox<String> sectionsSiteComboBox = new ComboBox<String>(OBSERVABLE_LIST_SITE_TABS) {{
             setValue("Не выбрано");
             setOnAction(actionEvent -> urlSection = (HASH_MAP_SITE_TABS.get(getValue())));
-        }};
-        VBox vboxContentDownloadScrollPane = new VBox(10) {{
         }};
         ScrollPane scrollPaneLeftScene = new ScrollPane(vboxContentDownloadScrollPane) {
             {

@@ -7,6 +7,7 @@ public class UpdatePathMusicThread extends Thread {
 
     UpdatePathMusicThread(GUI gui) {
         this.gui = gui;
+        gui.createGUI();
     }
 
     @Override
@@ -16,10 +17,10 @@ public class UpdatePathMusicThread extends Thread {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        gui.updatePathMusic();
+                        gui.fillPathMusic();
                     }
                 });
-                Thread.sleep(2200);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

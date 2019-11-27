@@ -14,7 +14,7 @@ public class Directory implements Constains {
         File directory = new File(path);
         ArrayList<String> musics = new ArrayList<>();
         for (String file : directory.list()) {
-            if (file.contains(".mp3")) {
+           if (file.contains(".mp3")) {
                 musics.add(file);
             }
         }
