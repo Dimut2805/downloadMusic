@@ -40,7 +40,6 @@ public class AttributeMusic implements Constains {
                     array[2] = downloadUrl;
                     array[3] = downloadImage;
                     arrayListAttributesMusic.add(array);
-                    System.out.println(Arrays.toString(array));
                 }
             }
         }
