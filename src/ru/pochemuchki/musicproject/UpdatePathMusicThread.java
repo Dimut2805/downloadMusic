@@ -8,7 +8,6 @@ public class UpdatePathMusicThread extends Thread {
 
     UpdatePathMusicThread(GUI gui) {
         this.gui = gui;
-        gui.createGUI();
     }
 
     @Override
