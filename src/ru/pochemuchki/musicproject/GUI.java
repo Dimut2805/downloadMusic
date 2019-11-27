@@ -1,5 +1,6 @@
 package ru.pochemuchki.musicproject;
 
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -11,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,7 @@ public class GUI implements Constains {
         stage.setWidth(width);
         stage.setHeight(height);
         stage.setScene(createRootScene());
+        stage.setOnCloseRequest(event -> System.exit(0));
         stage.show();
     }
 
