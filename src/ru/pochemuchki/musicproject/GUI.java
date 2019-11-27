@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 public class GUI implements Constains {
     private String urlSection;
-    private VBox vboxContentPathMusic = new VBox();
-    private VBox vboxContentDownloadScrollPane = new VBox();
-    private Directory directory = new Directory(PATH_MUSICS);
+    private VBox vboxContentPathMusic;
+    private VBox vboxContentDownloadScrollPane;
+    private Directory directory;
     Stage stage;
     String title;
     int width, height;
@@ -30,6 +30,7 @@ public class GUI implements Constains {
         this.height = height;
         vboxContentDownloadScrollPane = new VBox();
         vboxContentPathMusic = new VBox();
+        directory = new Directory(PATH_MUSICS);
     }
 
     public void createGUI() {
@@ -112,7 +113,7 @@ public class GUI implements Constains {
         if (vboxContentDownloadScrollPane.getChildren().size() != 0) {
             vboxContentDownloadScrollPane.getChildren().clear();
         }
-        ArrayList<String[]> attributeMusic = DownloadUrl.findAttributeMusic(urlSection);
+        ArrayList<String[]> attributeMusic = AttributeMusic.findAttributeMusic(urlSection);
         int numberMusic = 1;
         for (String[] attributes : attributeMusic) {
             Text nameMusic = new Text(numberMusic + ". " + attributes[0] + " - " + attributes[1]) {{
