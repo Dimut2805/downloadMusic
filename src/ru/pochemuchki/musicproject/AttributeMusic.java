@@ -7,12 +7,13 @@ import org.jsoup.select.Elements;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
  * Author Utin D. S 17it18
  */
-public class DownloadUrl implements Constains {
+public class AttributeMusic implements Constains {
 
     /**
      * Ищет атрибуты в исходном коде страницы сайта
@@ -28,15 +29,18 @@ public class DownloadUrl implements Constains {
             StringBuilder prov = new StringBuilder();
             for (Element element : elements.select("li")) {
                 if (element.hasAttr("data-id") && !prov.toString().contains(element.attr("data-id"))) {
-                    String[] array = new String[3];
+                    String[] array = new String[4];
                     prov.append(element.attr("data-id")).append(" ");
                     String artist = elementsCodeMusics.select("[data-id=" + element.attr("data-id") + "]").attr("data-artist");
                     String nameMusic = elementsCodeMusics.select("[data-id=" + element.attr("data-id") + "]").attr("data-title");
                     String downloadUrl = elementsCodeMusics.select("li.play[data-id=" + element.attr("data-id") + "]").attr("data-url");
+                    String downloadImage = element.select("img").attr("data-src");
                     array[0] = artist;
                     array[1] = nameMusic;
                     array[2] = downloadUrl;
+                    array[3] = downloadImage;
                     arrayListAttributesMusic.add(array);
+                    System.out.println(Arrays.toString(array));
                 }
             }
         }
