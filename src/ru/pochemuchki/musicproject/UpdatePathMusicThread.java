@@ -1,7 +1,6 @@
 package ru.pochemuchki.musicproject;
 
 import javafx.application.Platform;
-import javafx.stage.Stage;
 
 public class UpdatePathMusicThread extends Thread {
     GUI gui;
