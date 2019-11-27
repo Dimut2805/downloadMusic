@@ -31,9 +31,6 @@ public class GUI implements Constains {
         stage.show();
     }
 
-    public void createGUI() {
-    }
-
     public void updatePathMusic() {
         if (vboxContentPathMusic.getChildren().size() != 0) {
             vboxContentPathMusic.getChildren().clear();
