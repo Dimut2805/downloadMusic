@@ -1,3 +1,5 @@
+package ru.pochemuchki.musicproject;
+
 import javax.sound.sampled.*;
 import java.io.*;
 import java.net.URL;

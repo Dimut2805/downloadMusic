@@ -1,3 +1,5 @@
+package ru.pochemuchki.musicproject;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -8,8 +10,10 @@ public interface Constains {
     String DOWNLOAD_URL = "src\\downloadUrl.txt";
     String PATH_TO_MUSIC = "C:\\Users\\" +System.getProperty("user.name") + "\\Music\\";
     String PATH_TO_IMAGE = "srs\\image";
+    String PATH_MUSICS = "C:\\Users\\" + System.getProperty("user.name") + "\\Music";
 
-    HashMap<String,String> HASH_MAP_SITE_TABS = new HashMap<String,String>() {
+
+    HashMap<String, String> HASH_MAP_SITE_TABS = new HashMap<String, String>() {
         {
             put("Не выбрано", null);
             put("Топ-100", "https://muzika.vip");
@@ -19,9 +23,9 @@ public interface Constains {
         }
     };
     ObservableList<String> OBSERVABLE_LIST_SITE_TABS = FXCollections.observableArrayList(
-                    "Не выбрано",
-                    "Топ-100",
-                    "Русский поп",
-                    "Русский рок",
-                    "Дабстэп");
+            "Не выбрано",
+            "Топ-100",
+            "Русский поп",
+            "Русский рок",
+            "Дабстэп");
 }
