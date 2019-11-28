@@ -1,5 +1,7 @@
 package ru.pochemuchki.musicproject;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -12,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GUI implements Constains {
@@ -34,12 +37,14 @@ public class GUI implements Constains {
     }
 
     public void createGUI() {
-        stage.setTitle(title);
-        stage.setWidth(width);
-        stage.setHeight(height);
-        stage.setScene(createRootScene());
-        stage.setOnCloseRequest(event -> System.exit(0));
-        stage.show();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Layout.fxml"));
+            stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(event -> System.exit(0));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void fillPathMusic() {
@@ -53,7 +58,7 @@ public class GUI implements Constains {
                 setFont(Font.font(15));
             }};
             Button buttonListenMusic = new Button("Слушать") {{
-                setOnAction(event -> listenMusicButton());
+                setOnAction(event -> listenMusicButton(music));
             }};
             Button buttonDeleteMusic = new Button("Удалить") {{
                 setOnAction(event -> deleteMusicButton(music));
@@ -101,8 +106,8 @@ public class GUI implements Constains {
         return new VBox(hboxSearchBySections, scrollPaneLeftScene);
     }
 
-    private void listenMusicButton() {
-
+    private void listenMusicButton(String nameMusic) {
+        new Song().playSong(nameMusic);
     }
 
     private void deleteMusicButton(String music) {

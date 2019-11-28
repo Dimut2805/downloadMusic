@@ -17,7 +17,7 @@ public class UpdatePathMusicThread extends Thread {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        gui.fillPathMusic();
+                        //gui.fillPathMusic();
                     }
                 });
                 Thread.sleep(2000);

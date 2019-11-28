@@ -22,10 +22,9 @@ public class Song implements Constains {
             }
     }
 
-
     public void playSong(String nameSong) {
         File soundFile = new File(PATH_TO_MUSIC + nameSong );
-        try {
+       try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
