@@ -9,6 +9,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <SplitPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.Controller" prefWidth="1300"
            prefHeight="600">
     <HBox>
@@ -28,7 +30,8 @@
                         </FXCollections>
                     </items>
                 </ComboBox>
-                <Button text="Найти" onAction="#clickFindMusicOnSite"/>
+                <Button text="Найти" onAction="#clickFindMusicOnSite">
+                </Button>
             </HBox>
             <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
                 <content>
