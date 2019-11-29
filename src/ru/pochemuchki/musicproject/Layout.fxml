@@ -9,46 +9,66 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<SplitPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.Controller" prefWidth="1300"
-           prefHeight="600">
-    <HBox>
-        <VBox>
-            <HBox>
-                <Text text="Разделы"/>
-                <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Не выбрано"/>
-                            <String fx:value="Топ-100"/>
-                            <String fx:value="Billie Eilish"/>
-                            <String fx:value="Григорий Лепс"/>
-                            <String fx:value="Группа Кино"/>
-                            <String fx:value="Макс Корж"/>
-                            <String fx:value="Lindsey Stirling"/>
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-                <Button text="Найти" onAction="#clickFindMusicOnSite">
-                </Button>
-            </HBox>
-            <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
-                <content>
-                    <VBox fx:id="vboxContentDownloadScrollPane"/>
-                </content>
-            </ScrollPane>
-        </VBox>
-        <VBox>
-            <HBox>
-                <Text text="Моя музыка"/>
-                <Button text="Обновить" onAction="#updatePathMusic"/>
-            </HBox>
-            <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
-                <content>
-                    <VBox fx:id="vboxContentPathMusic"/>
-                </content>
-            </ScrollPane>
-        </VBox>
-    </HBox>
-</SplitPane>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.Controller">
+    <MenuBar>
+        <Menu text="Файл">
+            <MenuItem text="Выйти"/>
+        </Menu>
+        <Menu text="Настройка">
+            <Menu text="Стиль">
+                <MenuItem text="Свет"/>
+                <MenuItem text="Тьма"/>
+            </Menu>
+        </Menu>
+        <Menu text="Справка">
+            <MenuItem text="О программе"/>
+        </Menu>
+    </MenuBar>
+    <SplitPane prefWidth="1300"
+               prefHeight="600">
+        <HBox>
+            <VBox>
+                <HBox>
+                    <Text text="Разделы"/>
+                    <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Не выбрано"/>
+                                <String fx:value="Топ-100"/>
+                                <String fx:value="Billie Eilish"/>
+                                <String fx:value="Григорий Лепс"/>
+                                <String fx:value="Группа Кино"/>
+                                <String fx:value="Макс Корж"/>
+                                <String fx:value="Lindsey Stirling"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <Button text="Найти" onAction="#clickFindMusicOnSite"/>
+                </HBox>
+                <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
+                    <content>
+                        <VBox fx:id="vboxContentDownloadScrollPane"/>
+                    </content>
+                </ScrollPane>
+            </VBox>
+            <VBox>
+                <HBox>
+                    <Text text="Моя музыка"/>
+                    <Button text="Обновить" onAction="#updatePathMusic"/>
+                </HBox>
+                <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
+                    <content>
+                        <VBox fx:id="vboxContentPathMusic"/>
+                    </content>
+                </ScrollPane>
+            </VBox>
+        </HBox>
+    </SplitPane>
+</VBox>
