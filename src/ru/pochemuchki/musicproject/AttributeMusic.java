@@ -7,6 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -24,22 +25,13 @@ public class AttributeMusic implements Constains {
         if (url != null) {
             Document document = createDocumentHTML(url);
             Elements elementsCodeMusics = document.select("ul.unstyled.songs").select("li.item");
-            Elements elements = elementsCodeMusics.select("[data-id][data-artist]");
-            StringBuilder prov = new StringBuilder();
-            for (Element element : elements.select("li")) {
-                if (element.hasAttr("data-id") && !prov.toString().contains(element.attr("data-id"))) {
-                    String[] array = new String[4];
-                    prov.append(element.attr("data-id")).append(" ");
-                    String artist = elementsCodeMusics.select("[data-id=" + element.attr("data-id") + "]").attr("data-artist");
-                    String nameMusic = elementsCodeMusics.select("[data-id=" + element.attr("data-id") + "]").attr("data-title");
-                    String downloadUrl = elementsCodeMusics.select("li.play[data-id=" + element.attr("data-id") + "]").attr("data-url");
-                    String downloadImage = element.select("img").attr("data-src");
-                    array[0] = artist;
-                    array[1] = nameMusic;
-                    array[2] = downloadUrl;
-                    array[3] = downloadImage;
-                    arrayListAttributesMusic.add(array);
-                }
+            for (Element element : elementsCodeMusics) {
+                String[] array = new String[4];
+                array[0] = element.select("li.item").attr("data-artist");
+                array[1] = element.select("li.item").attr("data-title");
+                array[2] = element.select("li.play").attr("data-url");
+                array[3] = element.select("img").attr("data-src");
+                arrayListAttributesMusic.add(array);
             }
         }
         return arrayListAttributesMusic;
