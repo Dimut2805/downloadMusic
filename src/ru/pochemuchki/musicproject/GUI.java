@@ -8,18 +8,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GUI implements Constains {
-    Stage stage;
+    Stage window;
 
     GUI(Stage stage) {
-        this.stage = stage;
+        this.window = stage;
     }
 
     public void createGUI() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Layout.fxml"));
-            stage.setScene(new Scene(root));
-            stage.setOnCloseRequest(event -> System.exit(0));
-            stage.show();
+            window.setScene(new Scene(root));
+            window.setOnCloseRequest(event -> System.exit(0));
+            window.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

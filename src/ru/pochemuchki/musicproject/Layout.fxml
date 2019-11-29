@@ -15,7 +15,7 @@
         <VBox>
             <HBox>
                 <Text text="Разделы"/>
-                <ComboBox fx:id="comboBox" onAction="#getComboBox" promptText="Не указано">
+                <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Не выбрано"/>
@@ -39,7 +39,7 @@
         <VBox>
             <HBox>
                 <Text text="Моя музыка"/>
-                <Button text="Обновить" onAction="#fillPathMusic"/>
+                <Button text="Обновить" onAction="#updatePathMusic"/>
             </HBox>
             <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
                 <content>

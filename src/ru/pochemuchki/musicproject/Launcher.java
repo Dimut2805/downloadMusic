@@ -11,7 +11,7 @@ public class Launcher extends Application implements Constains {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
-        new GUI(stage).createGUI();
+    public void start(Stage window) {
+        new GUI(window).createGUI();
     }
 }
