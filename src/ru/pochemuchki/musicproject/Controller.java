@@ -1,12 +1,17 @@
 package ru.pochemuchki.musicproject;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -20,6 +25,33 @@ public class Controller implements Constains {
     private ComboBox<String> sections;
     @FXML
     String urlSection;
+
+    @FXML
+    private void clickExit() {
+        Stage stage = new Stage();
+        Button yes = new Button("Да");
+        yes.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.exit(0);
+            }
+        });
+        Button no = new Button("Нет");
+        no.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.close();
+            }
+        });
+        HBox hBox = new HBox(5, yes, no);
+        VBox vBox = new VBox(5, new Label("Вы точно хотите выйти?"), hBox);
+        stage.setTitle("Выход");
+        stage.setWidth(200);
+        stage.setHeight(200);
+        stage.setOnCloseRequest(event -> stage.close());
+        stage.setScene(new Scene(vBox));
+        stage.show();
+    }
 
     @FXML
     private void clickFindMusicOnSite() {
