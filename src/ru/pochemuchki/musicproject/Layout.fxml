@@ -28,7 +28,7 @@
                         </FXCollections>
                     </items>
                 </ComboBox>
-                <Button text="Click!" onAction="#clickFindMusicOnSite"/>
+                <Button text="Скачать" onAction="#clickFindMusicOnSite"/>
             </HBox>
             <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
                 <content>

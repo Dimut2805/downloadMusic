@@ -18,8 +18,8 @@ public class Controller implements Constains {
     VBox vboxContentDownloadScrollPane;
     @FXML
     private ComboBox<String> comboBox;
+    @FXML
     String urlSection;
-
 
     @FXML
     private void clickFindMusicOnSite() {
@@ -45,7 +45,7 @@ public class Controller implements Constains {
     }
 
     @FXML
-    public void fillPathMusic() {
+    private void fillPathMusic() {
         if (vboxContentPathMusic.getChildren().size() != 0) {
             vboxContentPathMusic.getChildren().clear();
         }
@@ -65,6 +65,7 @@ public class Controller implements Constains {
             numberMusic++;
         }
     }
+
     private void listenMusicButton(String nameMusic) {
         new Song().playSong(nameMusic);
     }
@@ -73,8 +74,8 @@ public class Controller implements Constains {
         DirMyMusic.deleteMusic(music);
     }
 
-    public void getComboBox() {
-        comboBox.setOnAction(actionEvent -> urlSection = (HASH_MAP_SITE_TABS.get(comboBox.getValue())));
-        System.out.println(urlSection);
+    @FXML
+    private void getComboBox() {
+        urlSection = HASH_MAP_SITE_TABS.get(comboBox.getValue());
     }
 }
