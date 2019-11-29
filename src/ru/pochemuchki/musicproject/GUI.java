@@ -17,7 +17,9 @@ public class GUI implements Constains {
     public void createGUI() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Layout.fxml"));
-            window.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(String.valueOf(this.getClass().getResource("stylesheet.css")));
+            window.setScene(scene);
             window.setOnCloseRequest(event -> System.exit(0));
             window.show();
         } catch (IOException e) {
