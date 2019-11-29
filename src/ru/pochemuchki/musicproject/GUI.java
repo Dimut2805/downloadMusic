@@ -19,6 +19,7 @@ public class GUI implements Constains {
             Parent root = FXMLLoader.load(getClass().getResource("Layout.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add(String.valueOf(this.getClass().getResource("stylesheet.css")));
+            window.setTitle("Приложение для скачивания музыки.");
             window.setScene(scene);
             window.setOnCloseRequest(event -> System.exit(0));
             window.show();

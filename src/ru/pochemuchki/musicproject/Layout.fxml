@@ -13,8 +13,8 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
+
+<?import javafx.scene.layout.FlowPane?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.Controller">
     <MenuBar>
         <Menu text="Файл">
@@ -30,13 +30,13 @@
             <MenuItem text="О программе"/>
         </Menu>
     </MenuBar>
-    <SplitPane prefWidth="1300"
-               prefHeight="600">
+    <FlowPane prefWidth="1300" id="main"
+              prefHeight="600">
         <HBox>
             <VBox>
                 <HBox>
                     <Text text="Разделы"/>
-                    <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано">
+                    <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано" id="main">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
                                 <String fx:value="Не выбрано"/>
@@ -52,7 +52,7 @@
 
                     <Button text="Найти" onAction="#clickFindMusicOnSite"/>
                 </HBox>
-                <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
+                <ScrollPane prefViewportHeight="350" prefViewportWidth="600" id="main">
                     <content>
                         <VBox fx:id="vboxContentDownloadScrollPane"/>
                     </content>
@@ -63,12 +63,12 @@
                     <Text text="Моя музыка"/>
                     <Button text="Обновить" onAction="#updatePathMusic"/>
                 </HBox>
-                <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
+                <ScrollPane prefViewportHeight="350" prefViewportWidth="600" id="main">
                     <content>
                         <VBox fx:id="vboxContentPathMusic"/>
                     </content>
                 </ScrollPane>
             </VBox>
         </HBox>
-    </SplitPane>
+    </FlowPane>
 </VBox>
