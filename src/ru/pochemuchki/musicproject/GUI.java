@@ -51,36 +51,4 @@ public class GUI implements Constains {
         window.setScene(scene);
         window.show();
     }
-
-    public static void addSectionGUI() {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(GUI.class.getResource("AddSection.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(String.valueOf(GUI.class.getResource("stylesheet.css")));
-        Stage window = new Stage();
-        window.setTitle("Добавить раздел");
-        window.setOnCloseRequest(event -> window.close());
-        window.setScene(scene);
-        window.show();
-    }
-
-    public static void removeSectionGUI() {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(GUI.class.getResource("RemoveSection.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(String.valueOf(GUI.class.getResource("stylesheet.css")));
-        Stage window = new Stage();
-        window.setTitle("Удалить раздел");
-        window.setOnCloseRequest(event -> window.close());
-        window.setScene(scene);
-        window.show();
-    }
 }

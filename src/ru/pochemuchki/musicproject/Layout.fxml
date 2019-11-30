@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.Controller" spacing="10">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.Controller" spacing="10" fx:id="window">
     <MenuBar>
         <Menu text="Файл">
             <MenuItem text="Выйти" onAction="#clickExit"/>
@@ -23,10 +23,6 @@
             <Menu text="Стиль">
                 <MenuItem text="Свет"/>
                 <MenuItem text="Тьма"/>
-            </Menu>
-            <Menu text="Разделы">
-                <MenuItem text="Добавить" onAction="#clickAdd"/>
-                <MenuItem text="Удалить" onAction="#clickRemove"/>
             </Menu>
         </Menu>
         <Menu text="Справка">

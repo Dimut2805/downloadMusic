@@ -1,8 +1,5 @@
 package ru.pochemuchki.musicproject;
 
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -28,6 +25,8 @@ public class Controller implements Constains {
         }
     };
     @FXML
+    VBox window;
+    @FXML
     VBox vboxContentPathMusic;
     @FXML
     VBox vboxContentDownloadScrollPane;
@@ -39,16 +38,6 @@ public class Controller implements Constains {
     @FXML
     private void clickExit() {
         GUI.exitGUI();
-    }
-
-    @FXML
-    private void clickAdd() {
-        GUI.addSectionGUI();
-    }
-
-    @FXML
-    private void clickRemove() {
-        GUI.removeSectionGUI();
     }
 
     @FXML
