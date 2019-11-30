@@ -1,56 +1,54 @@
 package ru.pochemuchki.musicproject;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Controller implements Constains {
+    public HashMap<String, String> hashMapNameKeySections = new HashMap<String, String>() {
+        {
+            put("Не выбрано", null);
+            put("Топ-100", "https://muzika.vip");
+            put("Billie Eilish", "https://muzika.vip/m-artists/billie-eilish-121989");
+            put("Григорий Лепс", "https://muzika.vip/m-artists/григорий-лепс-6298");
+            put("Группа Кино", "https://muzika.vip/m-artists/виктор-цой-6257");
+            put("Макс Корж", "https://muzika.vip/m-artists/макс-корж-9229");
+            put("Lindsey Stirling", "https://muzika.vip/m-artists/lindsey-stirling-10942");
+        }
+    };
     @FXML
     VBox vboxContentPathMusic;
     @FXML
     VBox vboxContentDownloadScrollPane;
     @FXML
-    private ComboBox<String> sections;
+    public ComboBox<String> sections;
     @FXML
     String urlSection;
 
     @FXML
     private void clickExit() {
-        Stage stage = new Stage();
-        Button yes = new Button("Да");
-        yes.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.exit(0);
-            }
-        });
-        Button no = new Button("Нет");
-        no.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                stage.close();
-            }
-        });
-        HBox hBox = new HBox(5, yes, no);
-        VBox vBox = new VBox(5, new Label("Вы точно хотите выйти?"), hBox);
-        stage.setTitle("Выход");
-        stage.setWidth(200);
-        stage.setHeight(200);
-        stage.setOnCloseRequest(event -> stage.close());
-        stage.setScene(new Scene(vBox));
-        stage.show();
+        GUI.exitGUI();
+    }
+
+    @FXML
+    private void clickAdd() {
+        GUI.addSectionGUI();
+    }
+
+    @FXML
+    private void clickRemove() {
+        GUI.removeSectionGUI();
     }
 
     @FXML
@@ -110,7 +108,7 @@ public class Controller implements Constains {
 
     @FXML
     private void getComboBox() {
-        urlSection = HASH_MAP_SITE_TABS.get(sections.getValue());
+        urlSection = hashMapNameKeySections.get(sections.getValue());
     }
 
     @FXML

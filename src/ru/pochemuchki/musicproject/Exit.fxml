@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.pochemuchki.musicproject.ExitController" fx:id="window">
+    <VBox>
+        <Label text="Вы точно хотите выйти?"/>
+        <HBox>
+            <Button text="Да" onAction="#clickYes"/>
+            <Button text="Нет" onAction="#clickNo"/>
+        </HBox>
+    </VBox>
+
+</AnchorPane>

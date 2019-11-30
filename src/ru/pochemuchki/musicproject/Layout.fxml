@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
 
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.Controller" spacing="10">
     <MenuBar>
         <Menu text="Файл">
@@ -23,6 +23,10 @@
             <Menu text="Стиль">
                 <MenuItem text="Свет"/>
                 <MenuItem text="Тьма"/>
+            </Menu>
+            <Menu text="Разделы">
+                <MenuItem text="Добавить" onAction="#clickAdd"/>
+                <MenuItem text="Удалить" onAction="#clickRemove"/>
             </Menu>
         </Menu>
         <Menu text="Справка">
