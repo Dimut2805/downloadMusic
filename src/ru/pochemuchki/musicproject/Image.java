@@ -15,10 +15,11 @@ public class Image implements Constains {
 
     /**
      * Методля для скачивания кртинки который принимает ссылку на картинкуи и имя файла
-     * @param src - ссылка на картинку
+     *
+     * @param src       - ссылка на картинку
      * @param nameImage - имя файлв
      */
-    public void downloadImage(String src,String nameImage) throws IOException {
+    public void downloadImage(String src, String nameImage) throws IOException {
         String path = PATH_IMAGE + "\\" + nameImage;
         InputStream in;
         URL connection = new URL(src);

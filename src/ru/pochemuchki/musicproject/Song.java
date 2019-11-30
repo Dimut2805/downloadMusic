@@ -19,15 +19,14 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  * Класс для работы с музыкой.
  * Класс скачивает музыку, воспроизводит музыку
  */
-public class Song implements Constains{
-
+public class Song implements Constains {
 
 
     /**
      * Метод для скачивания музыки, получает ссылку на скачивание и название файла который скачивается
      *
-     * @param src - сслыка на файл
-     * @param name        - имя файла
+     * @param src  - сслыка на файл
+     * @param name - имя файла
      */
     public void downloadSong(String src, String name) {
         try {
@@ -39,6 +38,7 @@ public class Song implements Constains{
 
     /**
      * Воспроизводит музыку, на вход принимает имя файла
+     *
      * @param nameSong - имя файла
      */
     public void playSong(String nameSong) {
@@ -58,11 +58,12 @@ public class Song implements Constains{
         }
 
     }
+
     /**
      * Метод для скачивание из интернета.
      *
-     * @param src - ссылка на сайт от куда скачивать
-     * @param name   - имя которое будет у файла при создание
+     * @param src  - ссылка на сайт от куда скачивать
+     * @param name - имя которое будет у файла при создание
      * @throws IOException
      */
     private static void download(String src, String name) throws IOException {
