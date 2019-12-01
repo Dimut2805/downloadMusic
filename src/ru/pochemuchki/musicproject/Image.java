@@ -1,41 +1,46 @@
 package ru.pochemuchki.musicproject;
 
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+/**
+ * Класс для скачивания картинки
+ */
 public class Image implements Constains {
 
-// ТЕСТОВЫЙ ВАРИАНТ
-// НЕРАБОТАЕТ
-    public void downloadImage() {
-        try (BufferedReader imageFile = new BufferedReader(new FileReader(DOWNLOAD_URL))) {
-            String image;
-            int count = 0;
-            try {
-                while ((image = imageFile.readLine()) != null) {
-                    download(image, PATH_TO_IMAGE + String.valueOf(count) + ".jpg");
-                    count++;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+    /**
+     * Методля для скачивания кртинки который принимает ссылку на картинкуи и имя файла
+     *
+     * @param src       - ссылка на картинку
+     * @param nameImage - имя файлв
+     */
+    public void downloadImage(String src, String nameImage) throws IOException {
+        String path = PATH_IMAGE + "\\" + nameImage;
+        InputStream in;
+        URL connection = new URL(src);
+        HttpURLConnection urlConn;
+        try {
+            urlConn = (HttpURLConnection) connection.openConnection();
+            urlConn.setRequestMethod("GET");
+            urlConn.connect();
+            in = urlConn.getInputStream();
+            OutputStream writer = new FileOutputStream(path);
+            byte buffer[] = new byte[1];
+            int c = in.read(buffer);
+            while (c > 0) {
+                writer.write(buffer, 0, c);
+                c = in.read(buffer);
             }
+            writer.flush();
+            writer.close();
+            in.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
-
     }
-    private static void download(String strUrl, String file) throws IOException {
-        URL url = new URL(strUrl);
-        ReadableByteChannel byteChannel = Channels.newChannel(url.openStream());
-        FileOutputStream stream = new FileOutputStream(file);
-        stream.getChannel().transferFrom(byteChannel, 0, Long.MAX_VALUE);
-        stream.close();
-        byteChannel.close();
-    }
-
 }

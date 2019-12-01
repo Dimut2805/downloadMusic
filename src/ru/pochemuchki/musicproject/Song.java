@@ -1,6 +1,10 @@
 package ru.pochemuchki.musicproject;
 
-import javax.sound.sampled.*;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.AudioDevice;
+import javazoom.jl.player.JavaSoundAudioDevice;
+import javazoom.jl.player.advanced.AdvancedPlayer;
+
 import java.io.*;
 import java.net.URL;
 import java.nio.channels.Channels;
@@ -8,45 +12,71 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
-public class Song implements Constains {
+/**
+ * Класс для работы с музыкой.
+ * Класс скачивает музыку, воспроизводит музыку
+ */
+public class Song  implements Constains {
 
-    public void downloadSong(String downloadUrl,String name) {
-            try {
-                    download(downloadUrl, name + ".mp3");
-                } catch (IOException e) {
-                e.printStackTrace();
-            }
-    }
 
-    public void playSong(String nameSong) {
-        File soundFile = new File(PATH_TO_MUSIC + nameSong );
-       try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.setFramePosition(0);
-            clip.start();
-            Thread.sleep(clip.getMicrosecondLength() / 1000);
-            clip.stop();
-            clip.close();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
+    /**
+     * Метод для скачивания музыки, получает ссылку на скачивание и название файла который скачивается
+     *
+     * @param src  - сслыка на файл
+     * @param name - имя файла
+     */
+    public void downloadSong(String src, String name) {
+        try {
+            download(src, name + ".mp3");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void download(String strUrl, String nameSound) throws IOException {
-        URL url = new URL(strUrl);
-        ReadableByteChannel byteChannelForDownload = Channels.newChannel(url.openStream());
-        FileOutputStream stream = new FileOutputStream(nameSound);
-        stream.getChannel().transferFrom(byteChannelForDownload, 0, Long.MAX_VALUE);
-        Path sound = Paths.get(nameSound);
-        Files.copy(sound,Paths.get(PATH_TO_MUSIC + nameSound),REPLACE_EXISTING);
-        stream.close();
-        byteChannelForDownload.close();
+    /**
+     * Воспроизводит музыку, на вход принимает имя файла
+     *
+     * @param nameSong - имя файла
+     */
+    public void playSong(String nameSong) {
+        AdvancedPlayer player;
+
+        try {
+            InputStream threath = new FileInputStream(nameSong);
+            AudioDevice auDev = new JavaSoundAudioDevice();
+
+            player = new AdvancedPlayer(threath, auDev);
+            player.play();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл не найден");
+        } catch (JavaLayerException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Метод для скачивание из интернета.
+     *
+     * @param src  - ссылка на сайт от куда скачивать
+     * @param name - имя которое будет у файла при создание
+     * @throws IOException
+     */
+    private static void download(String src, String name) throws IOException {
+        URL url = new URL(src);
+        FileOutputStream stream;
+
+        try (ReadableByteChannel byteChannelForDownload = Channels.newChannel(url.openStream())) {
+            stream = new FileOutputStream(name);
+            stream.getChannel().transferFrom(byteChannelForDownload, 0, Long.MAX_VALUE);
+        }
+
+        Path sound = Paths.get(name);
+        Files.copy(sound, Paths.get(PATH_MUSICS + "\\" + name), REPLACE_EXISTING);
         Files.delete(sound);
     }
 
