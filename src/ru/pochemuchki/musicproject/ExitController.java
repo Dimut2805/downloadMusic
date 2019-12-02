@@ -14,4 +14,8 @@ public class ExitController {
     private void clickNo() {
         ((Stage) window.getScene().getWindow()).close();
     }
+    @FXML
+    public void initialize() {
+
+    }
 }
