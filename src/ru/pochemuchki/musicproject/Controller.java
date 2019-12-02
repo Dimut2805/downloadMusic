@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -18,6 +20,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class Controller implements Constains {
+    boolean musicPlayBoolean;
     @FXML
     ImageView imagePlayer;
     @FXML
@@ -137,7 +140,7 @@ public class Controller implements Constains {
 
     private void addMusicInPlayer(String nameMusic) {
         String namePicture = nameMusic.substring(0, nameMusic.length() - 4) + ".jpg";
-        File file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\"+namePicture);
+        File file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\" + namePicture);
         nameMusicAtPlayer.setText(nameMusic);
         try {
             imagePlayer.setImage(new javafx.scene.image.Image(file.toURI().toURL().toString()));
@@ -148,14 +151,22 @@ public class Controller implements Constains {
 
     @FXML
     private void listenMusicButton() {
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws FileNotFoundException {
-                new Song().playSong(nameMusicAtPlayer.getText());
-                return null;
-            }
-        };
-        new Thread(task).start();
+        if (musicPlayBoolean == false) {
+           // musicPlayBoolean = true;
+            Task<Void> task = new Task<Void>() {
+                @Override
+                protected Void call() throws FileNotFoundException {
+                    new Song().playSong(nameMusicAtPlayer.getText());
+                    return null;
+                }
+            };
+            new Thread(task).start();
+        }
+    }
+
+    @FXML
+    private void stopMusicButton() {
+        musicPlayBoolean = false;
     }
 
     private void deleteMusicButton(String music) {
@@ -177,6 +188,7 @@ public class Controller implements Constains {
 
     @FXML
     public void initialize() {
+        musicPlayBoolean = false;
         File file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg");
         try {
             imagePlayer.setImage(new javafx.scene.image.Image(file.toURI().toURL().toString()));
