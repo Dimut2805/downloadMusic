@@ -9,21 +9,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class Controller implements Constains {
-    public HashMap<String, String> hashMapNameKeySections = new HashMap<String, String>() {
-        {
-            put("Не выбрано", null);
-            put("Топ-100", "https://muzika.vip");
-            put("Billie Eilish", "https://muzika.vip/m-artists/billie-eilish-121989");
-            put("Григорий Лепс", "https://muzika.vip/m-artists/григорий-лепс-6298");
-            put("Группа Кино", "https://muzika.vip/m-artists/виктор-цой-6257");
-            put("Макс Корж", "https://muzika.vip/m-artists/макс-корж-9229");
-            put("Lindsey Stirling", "https://muzika.vip/m-artists/lindsey-stirling-10942");
-        }
-    };
     @FXML
     VBox window;
     @FXML
@@ -39,7 +27,16 @@ public class Controller implements Constains {
     private void clickExit() {
         GUI.exitGUI();
     }
-
+    @FXML
+    private  void clickDarkStyle() {
+        window.getStylesheets().clear();
+        window.getStylesheets().add(String.valueOf(this.getClass().getResource("stylesheetDark.css")));
+    }
+    @FXML
+    private  void clickWhiteStyle() {
+        window.getStylesheets().clear();
+        window.getStylesheets().add(String.valueOf(this.getClass().getResource("stylesheetWhite.css")));
+    }
     @FXML
     private void clickFindMusicOnSite() {
         if (vboxContentDownloadScrollPane.getChildren().size() != 0) {
@@ -97,7 +94,7 @@ public class Controller implements Constains {
 
     @FXML
     private void getComboBox() {
-        urlSection = hashMapNameKeySections.get(sections.getValue());
+        urlSection = HASH_MAP_SECTIONS.get(sections.getValue());
     }
 
     @FXML

@@ -14,15 +14,17 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.Controller" spacing="10" fx:id="window">
+<?import javafx.scene.control.Label?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.Controller" spacing="10"
+      fx:id="window">
     <MenuBar>
         <Menu text="Файл">
             <MenuItem text="Выйти" onAction="#clickExit"/>
         </Menu>
         <Menu text="Настройка">
             <Menu text="Стиль">
-                <MenuItem text="Свет"/>
-                <MenuItem text="Тьма"/>
+                <MenuItem text="Свет" onAction="#clickWhiteStyle"/>
+                <MenuItem text="Тьма" onAction="#clickDarkStyle"/>
             </Menu>
         </Menu>
         <Menu text="Справка">
@@ -51,7 +53,7 @@
 
                     <Button text="Найти" onAction="#clickFindMusicOnSite"/>
                 </HBox>
-                <ScrollPane prefViewportHeight="350" prefViewportWidth="600" id="main">
+                <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
                     <content>
                         <VBox fx:id="vboxContentDownloadScrollPane"/>
                     </content>
@@ -68,6 +70,11 @@
                     </content>
                 </ScrollPane>
             </VBox>
+        </HBox>
+        <HBox>
+            <Label text="Не выбрано"/>
+            <Button text="Старт"/>
+            <Button text="Стоп"/>
         </HBox>
     </FlowPane>
 </VBox>
