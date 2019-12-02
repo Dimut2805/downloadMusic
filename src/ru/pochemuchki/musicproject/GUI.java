@@ -20,7 +20,7 @@ public class GUI implements Constains {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Layout.fxml"));
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(String.valueOf(this.getClass().getResource("stylesheet.css")));
+            scene.getStylesheets().add(String.valueOf(this.getClass().getResource("stylesheetWhite.css")));
             window.setTitle("Приложение для скачивания музыки.");
             window.setScene(scene);
             window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -44,7 +44,7 @@ public class GUI implements Constains {
             e.printStackTrace();
         }
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(String.valueOf(GUI.class.getResource("stylesheet.css")));
+        scene.getStylesheets().add(String.valueOf(GUI.class.getResource("stylesheetDark.css")));
         Stage window = new Stage();
         window.setTitle("Выход");
         window.setOnCloseRequest(event -> window.close());

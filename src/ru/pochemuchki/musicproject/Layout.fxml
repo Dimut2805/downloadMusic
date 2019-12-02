@@ -21,8 +21,8 @@
         </Menu>
         <Menu text="Настройка">
             <Menu text="Стиль">
-                <MenuItem text="Свет"/>
-                <MenuItem text="Тьма"/>
+                <MenuItem text="Свет" onAction="#clickWhiteStyle"/>
+                <MenuItem text="Тьма" onAction="#clickDarkStyle"/>
             </Menu>
         </Menu>
         <Menu text="Справка">

@@ -27,7 +27,16 @@ public class Controller implements Constains {
     private void clickExit() {
         GUI.exitGUI();
     }
-
+    @FXML
+    private  void clickDarkStyle() {
+        window.getStylesheets().clear();
+        window.getStylesheets().add(String.valueOf(this.getClass().getResource("stylesheetDark.css")));
+    }
+    @FXML
+    private  void clickWhiteStyle() {
+        window.getStylesheets().clear();
+        window.getStylesheets().add(String.valueOf(this.getClass().getResource("stylesheetWhite.css")));
+    }
     @FXML
     private void clickFindMusicOnSite() {
         if (vboxContentDownloadScrollPane.getChildren().size() != 0) {
