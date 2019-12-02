@@ -15,6 +15,7 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.Controller" spacing="10"
       fx:id="window">
     <MenuBar>
@@ -72,8 +73,9 @@
             </VBox>
         </HBox>
         <HBox>
-            <Label text="Не выбрано"/>
-            <Button text="Старт"/>
+            <ImageView fx:id="imagePlayer" fitWidth="50" fitHeight="50"/>
+            <Label text="Не выбрано" fx:id="nameMusicAtPlayer"/>
+            <Button text="Старт" onAction="#listenMusicButton"/>
             <Button text="Стоп"/>
         </HBox>
     </FlowPane>

@@ -9,17 +9,12 @@ import java.io.*;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 /**
  * Класс для работы с музыкой.
  * Класс скачивает музыку, воспроизводит музыку
  */
-public class Song  implements Constains {
+public class Song implements Constains {
 
 
     /**
@@ -41,18 +36,16 @@ public class Song  implements Constains {
      *
      * @param nameSong - имя файла
      */
-    public void playSong(String nameSong) {
+    public void playSong(String nameSong) throws FileNotFoundException {
         AdvancedPlayer player;
 
         try {
-            InputStream threath = new FileInputStream(nameSong);
+            InputStream threath = new FileInputStream(PATH_MUSICS + "\\" + nameSong);
             AudioDevice auDev = new JavaSoundAudioDevice();
 
             player = new AdvancedPlayer(threath, auDev);
             player.play();
 
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл не найден");
         } catch (JavaLayerException e) {
             e.printStackTrace();
         }
@@ -71,13 +64,8 @@ public class Song  implements Constains {
         FileOutputStream stream;
 
         try (ReadableByteChannel byteChannelForDownload = Channels.newChannel(url.openStream())) {
-            stream = new FileOutputStream(name);
+            stream = new FileOutputStream(PATH_MUSICS + "\\"+name);
             stream.getChannel().transferFrom(byteChannelForDownload, 0, Long.MAX_VALUE);
         }
-
-        Path sound = Paths.get(name);
-        Files.copy(sound, Paths.get(PATH_MUSICS + "\\" + name), REPLACE_EXISTING);
-        Files.delete(sound);
     }
-
 }

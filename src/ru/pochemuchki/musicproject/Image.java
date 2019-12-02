@@ -1,10 +1,7 @@
 package ru.pochemuchki.musicproject;
 
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -20,9 +17,9 @@ public class Image implements Constains {
      * @param nameImage - имя файлв
      */
     public void downloadImage(String src, String nameImage) throws IOException {
-        String path = PATH_IMAGE + "\\" + nameImage;
+        String path = PATH_IMAGE + "\\DownloaderMusicPicture\\" + nameImage + ".jpg";
         InputStream in;
-        URL connection = new URL(src);
+        URL connection = new URL("https://muzika.vip/" + src);
         HttpURLConnection urlConn;
         try {
             urlConn = (HttpURLConnection) connection.openConnection();
