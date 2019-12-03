@@ -1,10 +1,7 @@
 package ru.pochemuchki.musicproject;
 
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -42,5 +39,10 @@ public class Image implements Constains {
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    public void removeImage(String nameImg){
+        File imageFile = new File(PATH_IMAGE + "\\" + nameImg);
+        imageFile.delete();
     }
 }
