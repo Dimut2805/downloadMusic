@@ -4,15 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class DirMyMusic implements Constains {
-    public static boolean findDir(String nameDir) {
-        File file = new File(PATH_IMAGE);
-        for (String string : file.list()) {
-            if(string.equals(nameDir)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public static ArrayList<String> getMusics() {
         File directory = new File(PATH_MUSICS);
@@ -24,8 +15,8 @@ public class DirMyMusic implements Constains {
         }
         return musics;
     }
-    public static boolean findPicture(String namePicture) {
-        File directory = new File(PATH_IMAGE+"\\DownloaderMusicPicture");
+    public static boolean findPicture(String src, String namePicture) {
+        File directory = new File(PATH_IMAGE+src);
         for (String file : directory.list()) {
             if(file.equals(namePicture)) {
                 return true;
