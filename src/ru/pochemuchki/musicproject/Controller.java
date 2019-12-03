@@ -146,7 +146,12 @@ public class Controller implements Constains {
 
     private void addMusicInPlayer(String nameMusic) {
         String namePicture = nameMusic.substring(0, nameMusic.length() - 4) + ".jpg";
-        File file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\" + namePicture);
+        File file;
+        if (DirMyMusic.findPicture("\\DownloaderMusicPicture\\", namePicture)) {
+            file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\" + namePicture);
+        } else {
+            file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg");
+        }
         myPlayer.setNameMusic(new Label(nameMusic));
         nameMusicAtPlayer.setText(myPlayer.getNameMusic().getText());
         try {
