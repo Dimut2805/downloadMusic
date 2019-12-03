@@ -21,6 +21,8 @@ import java.util.ArrayList;
 
 public class Controller implements Constains {
     MyPlayer myPlayer;
+    Integer intNumberListenMusicButton;
+    Button listenMusicOn;
     @FXML
     Button stopMusicButton;
     @FXML
@@ -70,31 +72,26 @@ public class Controller implements Constains {
             Text nameMusic = new Text(numberMusic + ". " + attributes[0] + " - " + attributes[1]) {{
                 setFont(Font.font(15));
             }};
-            int finalNumberMusic = numberMusic;
             Button buttonDownload = new Button("Cкачать") {{
-                setOnAction(event -> downloadMusicButton(attributes, finalNumberMusic));
-                setId("downloadButton");
+                setOnAction(event -> downloadMusicButton(attributes));
             }};
             vboxContentDownloadScrollPane.getChildren().add(new HBox(10, nameMusic, buttonDownload));
             numberMusic++;
         }
     }
 
-    private void downloadMusicButton(String[] attributes, int numberMusic) {
-        javafx.scene.image.Image smileLoading = new javafx.scene.image.Image("ru\\pochemuchki\\musicproject\\smile_loading.jpg");
-        ImageView viewIconSmile = new ImageView(smileLoading);
-        viewIconSmile.setFitWidth(25);
-        viewIconSmile.setFitHeight(25);
-        HBox hBox = ((HBox) vboxContentDownloadScrollPane.getChildren().get(numberMusic - 1));
-        hBox.getChildren().add(viewIconSmile);
+
+    private void downloadMusicButton(String[] attributes) {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
                 new Song().downloadSong(attributes[2], attributes[0] + " - " + attributes[1]);
-                new Image().downloadImage(attributes[3], attributes[0] + " - " + attributes[1]);
+                try {
+                    new Image().downloadImage(attributes[3], attributes[0] + " - " + attributes[1]);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 startUpdatePathMusic();
-                hBox.getChildren().remove(hBox.getChildren().size() - 1);
-                System.out.println(hBox.getChildren().toString());
                 return null;
             }
         };
@@ -121,23 +118,17 @@ public class Controller implements Constains {
             Label nameMusic = new Label(numberMusic + ". " + music) {{
                 setFont(Font.font(15));
             }};
-            String namePicture = music.substring(0, music.length() - 4) + ".jpg";
             ImageView imageView = null;
-            File file;
-            if (DirMyMusic.findPicture("\\DownloaderMusicPicture\\", namePicture)) {
-                file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\" + namePicture);
-            } else {
-                file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg");
-            }
             try {
-                imageView = new ImageView(new javafx.scene.image.Image(file.toURI().toURL().toString()));
+                imageView = new ImageView(new javafx.scene.image.Image(iconPlayer(music).toURI().toURL().toString()));
                 imageView.setFitWidth(50);
                 imageView.setFitHeight(50);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+            int finalNumberMusic = numberMusic;
             Button buttonListenMusic = new Button("Слушать") {{
-                setOnAction(event -> addMusicInPlayer(music));
+                setOnAction(event -> addMusicInPlayer(music, ((Button)((HBox)vboxContentPathMusic.getChildren().get(finalNumberMusic-1)).getChildren().get(2)), finalNumberMusic));
             }};
             Button buttonDeleteMusic = new Button("Удалить") {{
                 setOnAction(event -> deleteMusicButton(music));
@@ -147,21 +138,24 @@ public class Controller implements Constains {
         }
     }
 
-
-    private void addMusicInPlayer(String nameMusic) {
+    private File iconPlayer(String nameMusic) {
+        String namePicture = nameMusic.substring(0, nameMusic.length() - 4);
+        return DirMyMusic.findPicture("\\DownloaderMusicPicture\\", namePicture) ?
+                new File(PATH_IMAGE + "\\DownloaderMusicPicture\\" + namePicture) :
+                new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg");
+    }
+    private void addMusicInPlayer(String nameMusic, Button button, int numberMusic) {
+        if (intNumberListenMusicButton!=null) {
+            ((Button)((HBox)vboxContentPathMusic.getChildren().get(intNumberListenMusicButton-1)).getChildren().get(2)).setDisable(false);
+        }
+        button.setDisable(true);
+        intNumberListenMusicButton = numberMusic;
         listenMusicButton.setDisable(false);
         deleteFromPlayerButton.setDisable(false);
-        String namePicture = nameMusic.substring(0, nameMusic.length() - 4) + ".jpg";
-        File file;
-        if (DirMyMusic.findPicture("\\DownloaderMusicPicture\\", namePicture)) {
-            file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\" + namePicture);
-        } else {
-            file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg");
-        }
         myPlayer.setNameMusic(new Label(nameMusic));
         nameMusicAtPlayer.setText(myPlayer.getNameMusic().getText());
         try {
-            myPlayer.setIconMusic(new ImageView(new javafx.scene.image.Image(file.toURI().toURL().toString())));
+            myPlayer.setIconMusic(new ImageView(new javafx.scene.image.Image(iconPlayer(nameMusic).toURI().toURL().toString())));
             imagePlayer.setImage(myPlayer.getIconMusic().getImage());
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -175,6 +169,7 @@ public class Controller implements Constains {
         deleteFromPlayerButton.setDisable(true);
         myPlayer.on();
     }
+
     @FXML
     private void deleteFromPlayerButton() {
         myPlayer.setBaseSettingPlayer();
@@ -184,9 +179,11 @@ public class Controller implements Constains {
         imagePlayer.setImage(myPlayer.iconMusic.getImage());
         nameMusicAtPlayer.setText(myPlayer.getNameMusic().getText());
     }
+
     @FXML
     private void stopMusicButton() {
         listenMusicButton.setDisable(false);
+        deleteFromPlayerButton.setDisable(false);
     }
 
     private void deleteMusicButton(String music) {
@@ -207,7 +204,7 @@ public class Controller implements Constains {
         urlSection = HASH_MAP_SECTIONS.get(sections.getValue());
     }
 
-    private void checkBaseDirDownloaderMusic() {
+    private void baseOperation() {
         if (!BaseDir.findDir("", "DownloaderMusicPicture")) {
             new File(PATH_IMAGE, "DownloaderMusicPicture").mkdir();
         }
@@ -216,23 +213,33 @@ public class Controller implements Constains {
         }
         if (!BaseDir.findPicture("\\DownloaderMusicPicture\\basePicture", "кот.jpg")) {
             try {
-                Files.copy(Paths.get("src\\ru\\pochemuchki\\musicproject\\кот.jpg"), Paths.get(BASE_DIR_IMAGE_MUSIC + "\\кот.jpg"), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(Paths.get("src\\ru\\pochemuchki\\musicproject\\кот.jpg"),
+                        Paths.get(BASE_DIR_IMAGE_MUSIC + "\\кот.jpg"),
+                        StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    @FXML
-    public void initialize() {
-        checkBaseDirDownloaderMusic();
-        myPlayer = new MyPlayer();
-        File file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg");
+    private String createStringURL(String src) {
         try {
-            imagePlayer.setImage(new javafx.scene.image.Image(file.toURI().toURL().toString()));
+            return new File(src).toURI().toURL().toString();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        return "";
+    }
+
+    @FXML
+    public void initialize() {
+        baseOperation();
+        listenMusicOn = new Button();
+        myPlayer = new MyPlayer();
+        imagePlayer.setImage(
+                new javafx.scene.image.Image(
+                        createStringURL(
+                                PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg")));
         startUpdatePathMusic();
     }
 }

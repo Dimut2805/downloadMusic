@@ -69,9 +69,12 @@
                 <VBox>
                     <Label text="Не выбрано" fx:id="nameMusicAtPlayer"/>
                     <HBox>
-                        <Button id="playMusicButton" disable="true" fx:id="listenMusicButton" onAction="#listenMusicButton"/>
-                        <Button text="Стоп" disable="true" fx:id="stopMusicButton" onAction="#stopMusicButton"/>
-                        <Button text="Убрать" disable="true" fx:id="deleteFromPlayerButton"
+                        <Button prefWidth="50" prefHeight="50" id="playMusicButton" disable="true"
+                                fx:id="listenMusicButton" onAction="#listenMusicButton"/>
+                        <Button prefWidth="50" prefHeight="50" id="stopMusicButton" disable="true"
+                                fx:id="stopMusicButton" onAction="#stopMusicButton"/>
+                        <Button prefWidth="50" prefHeight="50" id="deleteMusicFromPlayerButton" disable="true"
+                                fx:id="deleteFromPlayerButton"
                                 onAction="#deleteFromPlayerButton"/>
                     </HBox>
                 </VBox>

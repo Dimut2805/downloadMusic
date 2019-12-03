@@ -39,7 +39,14 @@
 }
 
 #playMusicButton {
-	-fx-background-image: url("2.png");	
-	-fx-background-size: 30px;
+	-fx-background-image: url("playMusicPlayerWhite.png");
+	-fx-background-repeat: no-repeat;
+}
+#stopMusicButton {
+    -fx-background-image: url("stopPlayerWhite.png");
+	-fx-background-repeat: no-repeat;
+}
+#deleteMusicFromPlayerButton {
+    -fx-background-image: url("deleteMusicFromPlayerWhite.png");
 	-fx-background-repeat: no-repeat;
 }
