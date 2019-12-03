@@ -22,6 +22,10 @@ import java.util.ArrayList;
 public class Controller implements Constains {
     MyPlayer myPlayer;
     @FXML
+    Button stopMusicButton;
+    @FXML
+    Button deleteFromPlayerButton;
+    @FXML
     Button listenMusicButton;
     @FXML
     ImageView imagePlayer;
@@ -145,6 +149,8 @@ public class Controller implements Constains {
 
 
     private void addMusicInPlayer(String nameMusic) {
+        listenMusicButton.setDisable(false);
+        deleteFromPlayerButton.setDisable(false);
         String namePicture = nameMusic.substring(0, nameMusic.length() - 4) + ".jpg";
         File file;
         if (DirMyMusic.findPicture("\\DownloaderMusicPicture\\", namePicture)) {
@@ -165,9 +171,18 @@ public class Controller implements Constains {
     @FXML
     private void listenMusicButton() {
         listenMusicButton.setDisable(true);
+        stopMusicButton.setDisable(false);
         myPlayer.on();
     }
-
+    @FXML
+    private void deleteFromPlayerButton() {
+        myPlayer.setBaseSettingPlayer();
+        stopMusicButton.setDisable(true);
+        listenMusicButton.setDisable(true);
+        deleteFromPlayerButton.setDisable(true);
+        imagePlayer.setImage(myPlayer.iconMusic.getImage());
+        nameMusicAtPlayer.setText(myPlayer.getNameMusic().getText());
+    }
     @FXML
     private void stopMusicButton() {
         listenMusicButton.setDisable(false);
@@ -178,6 +193,7 @@ public class Controller implements Constains {
             @Override
             protected Void call() throws Exception {
                 DirMyMusic.deleteMusic(music);
+                new Image().removeImage(music);
                 startUpdatePathMusic();
                 return null;
             }

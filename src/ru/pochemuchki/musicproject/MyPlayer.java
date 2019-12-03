@@ -22,6 +22,15 @@ public class MyPlayer implements Constains {
         }
     }
 
+    public void setBaseSettingPlayer() {
+        nameMusic = new Label("Не выбрано");
+        try {
+            iconMusic = new ImageView(new Image(new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg").toURI().toURL().toString()));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Label getNameMusic() {
         return nameMusic;
     }

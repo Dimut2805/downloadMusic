@@ -41,7 +41,7 @@
                         </items>
                     </ComboBox>
 
-                    <Button  text="Найти" onAction="#clickFindMusicOnSite"/>
+                    <Button text="Найти" onAction="#clickFindMusicOnSite"/>
                 </HBox>
 
                 <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
@@ -51,7 +51,7 @@
                 </ScrollPane>
             </VBox>
             <VBox spacing="10">
-                <HBox spacing="10" >
+                <HBox spacing="10">
                     <Label text="Моя музыка"/>
                     <Button text="Обновить" onAction="#updatePathMusic"/>
                 </HBox>
@@ -62,11 +62,20 @@
                 </ScrollPane>
             </VBox>
         </HBox>
-        <HBox>
-            <ImageView fx:id="imagePlayer" fitWidth="50" fitHeight="50"/>
-            <Label text="Не выбрано" fx:id="nameMusicAtPlayer"/>
-            <Button text="Старт" fx:id="listenMusicButton" onAction="#listenMusicButton"/>
-            <Button text="Стоп" onAction="#stopMusicButton"/>
-        </HBox>
+        <VBox>
+            <Label text="Плеер"/>
+            <HBox>
+                <ImageView fx:id="imagePlayer" fitWidth="50" fitHeight="50"/>
+                <VBox>
+                    <Label text="Не выбрано" fx:id="nameMusicAtPlayer"/>
+                    <HBox>
+                        <Button text="Старт" disable="true" fx:id="listenMusicButton" onAction="#listenMusicButton"/>
+                        <Button text="Стоп" disable="true" fx:id="stopMusicButton" onAction="#stopMusicButton"/>
+                        <Button text="Убрать" disable="true" fx:id="deleteFromPlayerButton"
+                                onAction="#deleteFromPlayerButton"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
     </FlowPane>
 </VBox>
