@@ -43,6 +43,7 @@
 
                     <Button  text="Найти" onAction="#clickFindMusicOnSite"/>
                 </HBox>
+
                 <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
                     <content>
                         <VBox fx:id="vboxContentDownloadScrollPane"/>
