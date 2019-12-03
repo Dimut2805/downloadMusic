@@ -20,7 +20,9 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 public class Controller implements Constains {
-    boolean musicPlayBoolean;
+    MyPlayer myPlayer;
+    @FXML
+    Button listenMusicButton;
     @FXML
     ImageView imagePlayer;
     @FXML
@@ -120,8 +122,7 @@ public class Controller implements Constains {
             File file;
             if (DirMyMusic.findPicture("\\DownloaderMusicPicture\\", namePicture)) {
                 file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\" + namePicture);
-            }
-            else {
+            } else {
                 file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg");
             }
             try {
@@ -145,9 +146,11 @@ public class Controller implements Constains {
     private void addMusicInPlayer(String nameMusic) {
         String namePicture = nameMusic.substring(0, nameMusic.length() - 4) + ".jpg";
         File file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\" + namePicture);
-        nameMusicAtPlayer.setText(nameMusic);
+        myPlayer.setNameMusic(new Label(nameMusic));
+        nameMusicAtPlayer.setText(myPlayer.getNameMusic().getText());
         try {
-            imagePlayer.setImage(new javafx.scene.image.Image(file.toURI().toURL().toString()));
+            myPlayer.setIconMusic(new ImageView(new javafx.scene.image.Image(file.toURI().toURL().toString())));
+            imagePlayer.setImage(myPlayer.getIconMusic().getImage());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -155,22 +158,13 @@ public class Controller implements Constains {
 
     @FXML
     private void listenMusicButton() {
-        if (musicPlayBoolean == false) {
-            // musicPlayBoolean = true;
-            Task<Void> task = new Task<Void>() {
-                @Override
-                protected Void call() throws FileNotFoundException {
-                    new Song().playSong(nameMusicAtPlayer.getText());
-                    return null;
-                }
-            };
-            new Thread(task).start();
-        }
+        listenMusicButton.setDisable(true);
+        myPlayer.on();
     }
 
     @FXML
     private void stopMusicButton() {
-        musicPlayBoolean = false;
+        listenMusicButton.setDisable(false);
     }
 
     private void deleteMusicButton(String music) {
@@ -209,7 +203,7 @@ public class Controller implements Constains {
     @FXML
     public void initialize() {
         checkBaseDirDownloaderMusic();
-        musicPlayBoolean = false;
+        myPlayer = new MyPlayer();
         File file = new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg");
         try {
             imagePlayer.setImage(new javafx.scene.image.Image(file.toURI().toURL().toString()));

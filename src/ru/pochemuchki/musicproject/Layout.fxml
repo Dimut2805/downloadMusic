@@ -76,7 +76,7 @@
         <HBox>
             <ImageView fx:id="imagePlayer" fitWidth="50" fitHeight="50"/>
             <Label text="Не выбрано" fx:id="nameMusicAtPlayer"/>
-            <Button text="Старт" onAction="#listenMusicButton"/>
+            <Button text="Старт" fx:id="listenMusicButton" onAction="#listenMusicButton"/>
             <Button text="Стоп" onAction="#stopMusicButton"/>
         </HBox>
     </FlowPane>
