@@ -1,20 +1,32 @@
-.root {
- -fx-text-fill: white;
-    -fx-font-family: "Arial Narrow";
-    -fx-font-weight: bold;
-}
 .button {
-    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-background-color: linear-gradient(#1888FF, #2A5058);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-color: #111111;
 }
 .button:hover {
  -fx-background-color: linear-gradient(#2A5058, #61a2b1);
  }
- .Menu {
- 	-fx-background-color: linear-gradient(#61a2b1, #2A5058);
- }
   .scroll-pane > .viewport{
-
-        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-background-color: linear-gradient(#22518F, #000000);
      -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
  }
+
+#bg{
+        -fx-background-color: #132C4E;
+}
+
+#text{
+	-fx-color: #111111;
+	-fx-text-inner-color:#111111;
+}
+.menu{
+	 -fx-background-color: linear-gradient(#1888FF, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+.menu:hover {
+ -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+ }
+ #mi{
+	 -fx-background-color: linear-gradient(#1888FF, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
