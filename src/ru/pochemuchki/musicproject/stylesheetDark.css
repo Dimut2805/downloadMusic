@@ -1,10 +1,16 @@
 .button {
-    -fx-background-color: linear-gradient(#1888FF, #2A5058);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-    -fx-color: #111111;
+	-fx-padding:5 22 5 22;
+	-fx-border-color: #e2e2e2;
+	-fx-border-width: 2;
+	-fx-background-radius: 0;
+	-fx-background-color: #1d1d1d;
+	-fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+	-fx-font-size: 11pt;
+	-fx-text-fill: #d8d8d8;
+	-fx-background-insets: 0 0 0 0,0,1,2;
 }
 .button:hover {
- -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+ -fx-background-color: #3a3a3a;
  }
   .scroll-pane > .viewport{
         -fx-background-color: linear-gradient(#22518F, #000000);
@@ -12,16 +18,17 @@
  }
 
 #bg{
-        -fx-background-color: #132C4E;
+        -fx-background-color: #1d1d1d;
 }
 
-#text{
-	-fx-color: #111111;
-	-fx-text-inner-color:#111111;
+.label{
+	-fx-font-size: 11pt;
+	-fx-text-fill:white;
+	-fx-opacity:1;
 }
+
 .menu{
-	 -fx-background-color: linear-gradient(#1888FF, #2A5058);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+	 -fx-background-color: derive(#1d1d1d,20%);
 }
 .menu:hover {
  -fx-background-color: linear-gradient(#2A5058, #61a2b1);

@@ -3,6 +3,7 @@ package ru.pochemuchki.musicproject;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -69,7 +70,7 @@ public class Controller implements Constains {
         ArrayList<String> musicsPath = DirMyMusic.getMusics();
         int numberMusic = 1;
         for (String music : musicsPath) {
-            Text nameMusic = new Text(numberMusic + ". " + music) {{
+            Label nameMusic = new Label(numberMusic + ". " + music) {{
                 setFont(Font.font(15));
             }};
             Button buttonListenMusic = new Button("Слушать") {{
