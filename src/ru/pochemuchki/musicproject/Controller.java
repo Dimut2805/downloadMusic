@@ -172,6 +172,7 @@ public class Controller implements Constains {
     private void listenMusicButton() {
         listenMusicButton.setDisable(true);
         stopMusicButton.setDisable(false);
+        deleteFromPlayerButton.setDisable(true);
         myPlayer.on();
     }
     @FXML
