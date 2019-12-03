@@ -3,8 +3,10 @@ package ru.pochemuchki.musicproject;
 import java.util.HashMap;
 
 public interface Constains {
-    String PATH_MUSICS = "C:\\Users\\" + System.getProperty("user.name") + "\\Music";
+    String PATH_MUSICS = "C:\\Users\\" + System.getProperty("user.name") + "\\Music\\";
     String PATH_IMAGE = "C:\\Users\\" + System.getProperty("user.name") + "\\Pictures";
+    String BASE_IMAGE_MUSIC = PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg";
+    String BASE_DIR_IMAGE_MUSIC = PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture";
 
     HashMap<String, String> HASH_MAP_SECTIONS = new HashMap<String, String>() {
         {

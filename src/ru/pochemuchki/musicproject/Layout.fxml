@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ScrollPane?>
@@ -71,9 +72,10 @@
             </VBox>
         </HBox>
         <HBox>
-            <Label text="Не выбрано"/>
-            <Button text="Старт"/>
-            <Button  text="Стоп"/>
+            <ImageView fx:id="imagePlayer" fitWidth="50" fitHeight="50"/>
+            <Label text="Не выбрано" fx:id="nameMusicAtPlayer"/>
+            <Button text="Старт" fx:id="listenMusicButton" onAction="#listenMusicButton"/>
+            <Button text="Стоп" onAction="#stopMusicButton"/>
         </HBox>
     </FlowPane>
 </VBox>
