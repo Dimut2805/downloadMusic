@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Button?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.pochemuchki.musicproject.ExitController" fx:id="window">
+            fx:controller="ru.pochemuchki.musicproject.ExitController" fx:id="bg">
     <VBox>
         <Label text="Вы точно хотите выйти?"/>
         <HBox>
