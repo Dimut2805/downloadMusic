@@ -4,6 +4,8 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.AudioDevice;
 import javazoom.jl.player.JavaSoundAudioDevice;
 import javazoom.jl.player.advanced.AdvancedPlayer;
+import javazoom.jl.player.advanced.PlaybackEvent;
+import javazoom.jl.player.advanced.PlaybackListener;
 
 import java.io.*;
 import java.net.URL;
@@ -15,8 +17,7 @@ import java.nio.channels.ReadableByteChannel;
  * Класс скачивает музыку, воспроизводит музыку
  */
 public class Song implements Constains {
-
-
+    AdvancedPlayer player;
     /**
      * Метод для скачивания музыки, получает ссылку на скачивание и название файла который скачивается
      *
@@ -36,21 +37,40 @@ public class Song implements Constains {
      *
      * @param nameSong - имя файла
      */
-    public void playSong(String nameSong) throws FileNotFoundException {
-        AdvancedPlayer player;
+
+    public void jobWithSong(String nameSong,String action) {
 
         try {
+
             InputStream threath = new FileInputStream(PATH_MUSICS + "\\" + nameSong);
             AudioDevice auDev = new JavaSoundAudioDevice();
-
             player = new AdvancedPlayer(threath, auDev);
-            player.play();
+            player.setPlayBackListener(new PlaybackListener() {
+                @Override
+                public void playbackFinished(PlaybackEvent evt) {
+                    evt.setSource(player);
+                    super.playbackFinished(evt);
+                }
+                @Override
+                public void playbackStarted(PlaybackEvent evt) {
+                    evt.setSource(player);
+                    super.playbackStarted(evt);
+                }
+            });
 
+            if(action.equals("start")) {
+                player.play();
+            }
+            else if(action.equals("stop")){
+                player.stop();
+            }
+
+            } catch (FileNotFoundException ignore) {
         } catch (JavaLayerException e) {
             e.printStackTrace();
         }
-
     }
+
 
     /**
      * Метод для скачивание из интернета.
