@@ -12,28 +12,67 @@
 .button:hover {
  -fx-background-color: #3a3a3a;
  }
-  .scroll-pane > .viewport{
-        -fx-background-color: linear-gradient(#22518F, #000000);
-     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
- }
+  .scroll-pane .viewport{
+     -fx-background-color:#3a3a3a;
+    
+}
+.scroll-pane .scroll-bar:vertical{
+-fx-background-color:#3a3a3a;
+}
+
+.scroll-pane .scroll-bar:horizontal{
+-fx-background-color:#3a3a3a;
+}
 
 #bg{
         -fx-background-color: #1d1d1d;
 }
 
 .label{
+	-fx-font-family:"Segoe UI", Adobe Gothic Std B, Arial, sans-serif;
 	-fx-font-size: 11pt;
 	-fx-text-fill:white;
 	-fx-opacity:1;
 }
 
 .menu{
-	 -fx-background-color: derive(#1d1d1d,20%);
+	 -fx-background-color:#1d1d1d;
+	 -fx-padding:5 22 5 22;
+	-fx-border-color: #e2e2e2;
+	-fx-border-width: 2;
+	-fx-background-radius: 0;
+    -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+	-fx-font-size: 11pt;
+	-fx-text-fill: #d8d8d8;
+	-fx-background-insets: 0 0 0 0,0,1,2;
 }
-.menu:hover {
- -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+.menu:hover{
+ -fx-background-color: #3a3a3a;
  }
+ .combo-box{
+	-fx-border-color: #e2e2e2;
+	-fx-border-width: 2;
+	-fx-background-radius: 0;
+	-fx-background-color: #1d1d1d;
+	-fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+	-fx-font-size: 11pt;
+	-fx-background-insets: 0 0 0 0,0,1,2; }
+ .combo-box-base .list-cell{
+ 	-fx-text-fill:white;
+ 	-fx-background-color: #1d1d1d;
+ }
+.combo-box-base .list-cell:hover{
+-fx-background-color: #3a3a3a;
+}
+
  #mi{
-	 -fx-background-color: linear-gradient(#1888FF, #2A5058);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+ 	-fx-padding:5 22 5 22;
+	-fx-border-color: #e2e2e2;
+	-fx-border-width: 2;
+	-fx-background-radius: 0;
+	-fx-background-color: #1d1d1d;
+	-fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+	-fx-font-size: 11pt;
+	-fx-text-fill: #d8d8d8;
+	-fx-background-insets: 0 0 0 0,0,1,2;
 }
