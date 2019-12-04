@@ -1,22 +1,24 @@
-package ru.pochemuchki.musicproject;
+package ru.pochemuchki.musicproject.objects;
 
 import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import ru.pochemuchki.musicproject.constains.Constains;
+import ru.pochemuchki.musicproject.Song;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 
 public class MyPlayer implements Constains {
-    ImageView iconMusic;
-    Label nameMusic;
+    private ImageView iconMusic;
+    private Label nameMusic;
 
-    MyPlayer() {
+    public MyPlayer() {
         nameMusic = new Label("Не выбрано");
         try {
-            iconMusic = new ImageView(new Image(new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\notFoundMusic.jpg").toURI().toURL().toString()));
+            iconMusic = new ImageView(new Image(new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\BaseIconNotFoundMusic.jpg").toURI().toURL().toString()));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -25,7 +27,7 @@ public class MyPlayer implements Constains {
     public void setBaseSettingPlayer() {
         nameMusic = new Label("Не выбрано");
         try {
-            iconMusic = new ImageView(new Image(new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\notFoundMusic.jpg").toURI().toURL().toString()));
+            iconMusic = new ImageView(new Image(new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\BaseIconNotFoundMusic.jpg").toURI().toURL().toString()));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

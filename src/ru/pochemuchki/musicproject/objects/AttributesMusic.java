@@ -1,9 +1,9 @@
-package ru.pochemuchki.musicproject;
+package ru.pochemuchki.musicproject.objects;
 
 public class AttributesMusic {
     private String author, nameMusic, urlMusic, urlImage;
 
-    AttributesMusic(String author, String nameMusic, String urlMusic, String urlImage) {
+    public AttributesMusic(String author, String nameMusic, String urlMusic, String urlImage) {
         this.author = author;
         this.nameMusic = nameMusic;
         this.urlMusic = urlMusic;

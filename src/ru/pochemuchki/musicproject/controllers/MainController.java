@@ -1,4 +1,4 @@
-package ru.pochemuchki.musicproject;
+package ru.pochemuchki.musicproject.controllers;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -11,12 +11,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import ru.pochemuchki.musicproject.*;
+import ru.pochemuchki.musicproject.objects.AttributesMusic;
+import ru.pochemuchki.musicproject.objects.GUI;
+import ru.pochemuchki.musicproject.objects.MyPlayer;
+import ru.pochemuchki.musicproject.utils.BaseOperation;
+import ru.pochemuchki.musicproject.utils.FindAttributeMusic;
+import ru.pochemuchki.musicproject.utils.NetworkUtils;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-public class Controller extends BaseOperation implements Constains, NetworkUtils {
+public class MainController extends BaseOperation implements NetworkUtils {
     MyPlayer myPlayer;
     Integer intNumberListenMusicButton;
     Button listenMusicOn;
@@ -44,18 +51,6 @@ public class Controller extends BaseOperation implements Constains, NetworkUtils
     @FXML
     private void clickExit() {
         GUI.exitGUI();
-    }
-
-    @FXML
-    private void clickDarkStyle() {
-        window.getStylesheets().clear();
-        window.getStylesheets().add(String.valueOf(this.getClass().getResource("stylesheetDark.css")));
-    }
-
-    @FXML
-    private void clickWhiteStyle() {
-        window.getStylesheets().clear();
-        window.getStylesheets().add(String.valueOf(this.getClass().getResource("stylesheetWhite.css")));
     }
 
     @FXML
@@ -139,7 +134,7 @@ public class Controller extends BaseOperation implements Constains, NetworkUtils
         String namePicture = nameMusic.substring(0, nameMusic.length() - 4);
         return findObjectInDir(BASE_DIR_DOWNLOADER_MUSIC_PICTURE + namePicture) ?
                 new File(PATH_IMAGE + "\\DownloaderMusicPicture\\" + namePicture) :
-                new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\baseIcon.jpg");
+                new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\DedaultTrackIcon.jpg");
     }
 
     private void addMusicInPlayer(String nameMusic, Button button, int numberMusic) {
@@ -170,7 +165,7 @@ public class Controller extends BaseOperation implements Constains, NetworkUtils
         stopMusicButton.setDisable(true);
         listenMusicButton.setDisable(true);
         deleteFromPlayerButton.setDisable(true);
-        imagePlayer.setImage(myPlayer.iconMusic.getImage());
+        imagePlayer.setImage(myPlayer.getIconMusic().getImage());
         nameMusicAtPlayer.setText(myPlayer.getNameMusic().getText());
     }
 
@@ -200,7 +195,6 @@ public class Controller extends BaseOperation implements Constains, NetworkUtils
 
     @FXML
     public void initialize() {
-        installationBaseObjects();
         listenMusicOn = new Button();
         myPlayer = new MyPlayer();
         imagePlayer.setImage(
