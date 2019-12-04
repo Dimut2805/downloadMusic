@@ -84,7 +84,7 @@ public class Song implements Constains {
         FileOutputStream stream;
 
         try (ReadableByteChannel byteChannelForDownload = Channels.newChannel(url.openStream())) {
-            stream = new FileOutputStream(PATH_MUSICS + "\\"+name);
+            stream = new FileOutputStream(PATH_MUSICS + "\\" + name);
             stream.getChannel().transferFrom(byteChannelForDownload, 0, Long.MAX_VALUE);
         }
     }

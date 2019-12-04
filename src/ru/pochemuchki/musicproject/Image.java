@@ -17,9 +17,9 @@ public class Image implements Constains {
      * @param nameImage - имя файлв
      */
     public void downloadImage(String src, String nameImage) throws IOException {
-        String path = PATH_IMAGE + "\\" + nameImage;
+        String path = PATH_IMAGE + "\\DownloaderMusicPicture\\" + nameImage;
         InputStream in;
-        URL connection = new URL(src);
+        URL connection = new URL("https://muzika.vip/"+src);
         HttpURLConnection urlConn;
         try {
             urlConn = (HttpURLConnection) connection.openConnection();

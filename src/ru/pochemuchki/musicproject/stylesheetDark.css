@@ -76,3 +76,16 @@
 	-fx-text-fill: #d8d8d8;
 	-fx-background-insets: 0 0 0 0,0,1,2;
 }
+
+#playMusicButton {
+	-fx-background-image: url("playMusicPlayerWhite.png");
+	-fx-background-repeat: no-repeat;
+}
+#stopMusicButton {
+    -fx-background-image: url("stopPlayerWhite.png");
+	-fx-background-repeat: no-repeat;
+}
+#deleteMusicFromPlayerButton {
+    -fx-background-image: url("deleteMusicFromPlayerWhite.png");
+	-fx-background-repeat: no-repeat;
+}
