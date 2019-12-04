@@ -51,7 +51,7 @@ public class MyPlayer implements Constains {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws FileNotFoundException {
-                new Song().playSong(nameMusic.getText());
+                new Song().jobWithSong(nameMusic.getText(), "start");
                 return null;
             }
         };
