@@ -12,7 +12,7 @@
             <MenuItem id="mi" text="Выйти" onAction="#clickExit"/>
         </Menu>
         <Menu text="Настройка">
-            <Menu text="Стиль">
+            <Menu id="mi" text="Стиль">
                 <MenuItem id="mi" text="Свет" onAction="#clickWhiteStyle"/>
                 <MenuItem id="mi" text="Тьма" onAction="#clickDarkStyle"/>
             </Menu>
@@ -21,13 +21,14 @@
             <MenuItem id="mi" text="О программе"/>
         </Menu>
     </MenuBar>
-    <FlowPane prefWidth="1300" id="main"
+    <FlowPane prefWidth="1300"
+              alignment="CENTER"
               prefHeight="600">
         <HBox spacing="10">
             <VBox spacing="10">
                 <HBox>
                     <Label text="Разделы"/>
-                    <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано" id="main">
+                    <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано" >
                         <items>
                             <FXCollections fx:factory="observableArrayList">
                                 <String fx:value="Не выбрано"/>
