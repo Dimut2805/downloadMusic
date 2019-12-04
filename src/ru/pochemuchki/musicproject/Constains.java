@@ -3,11 +3,15 @@ package ru.pochemuchki.musicproject;
 import java.util.HashMap;
 
 public interface Constains {
-    String PATH_MUSICS = "C:\\Users\\" + System.getProperty("user.name") + "\\Music\\";
-    String PATH_IMAGE = "C:\\Users\\" + System.getProperty("user.name") + "\\Pictures";
-    String BASE_IMAGE_MUSIC = PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\кот.jpg";
-    String BASE_DIR_IMAGE_MUSIC = PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture";
-
+    String NAME_USER = System.getProperty("user.name");
+    String PATH_MUSICS = "C:\\Users\\" + NAME_USER + "\\Music\\";
+    String PATH_IMAGE = "C:\\Users\\" + NAME_USER + "\\Pictures\\";
+    String BASE_DIR_BASE_PICTURE = PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\";
+    String BASE_IMAGE_JPG_NOT_FOUND_MUSIC = PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\notFoundMusic.jpg";
+    String BASE_IMAGE_JPG_BASE_ICON = PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\baseIcon.jpg";
+    String BASE_DIR_DOWNLOADER_MUSIC_PICTURE = PATH_IMAGE + "\\DownloaderMusicPicture\\";
+    String SRC_IMAGE_NOT_FOUND = "src\\ru\\pochemuchki\\musicproject\\notFoundMusic.jpg";
+    String SRC_IMAGE_BASE_ICON = "src\\ru\\pochemuchki\\musicproject\\baseIcon.jpg";
     HashMap<String, String> HASH_MAP_SECTIONS = new HashMap<String, String>() {
         {
             put("Не выбрано", null);
@@ -20,4 +24,3 @@ public interface Constains {
         }
     };
 }
-

@@ -54,7 +54,7 @@
             <VBox spacing="10">
                 <HBox spacing="10">
                     <Label text="Моя музыка"/>
-                    <Button text="Обновить" onAction="#updatePathMusic"/>
+                    <Button text="Обновить" onAction="#startUpdatePathMusic"/>
                 </HBox>
                 <ScrollPane prefViewportHeight="350" prefViewportWidth="600" id="main">
                     <content>
