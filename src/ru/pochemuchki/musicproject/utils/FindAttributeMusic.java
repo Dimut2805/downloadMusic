@@ -1,36 +1,33 @@
-package ru.pochemuchki.musicproject;
+package ru.pochemuchki.musicproject.utils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import ru.pochemuchki.musicproject.objects.AttributesMusic;
+import ru.pochemuchki.musicproject.constains.Constains;
 
 import java.io.*;
 import java.util.ArrayList;
 
-
-/**
- * Author Utin D. S 17it18
- */
-public class AttributeMusic implements Constains {
+public class FindAttributeMusic implements Constains {
 
     /**
      * Ищет атрибуты в исходном коде страницы сайта
      *
      * @return список ссылок на скачивание
      */
-    public static ArrayList<String[]> findAttributeMusic(String url) {
-        ArrayList<String[]> arrayListAttributesMusic = new ArrayList<>();
+    public static ArrayList<AttributesMusic> findAttributesMusic(String url) {
+        ArrayList<AttributesMusic> arrayListAttributesMusic = new ArrayList<>();
         if (url != null) {
             Document document = createDocumentHTML(url);
             Elements elementsCodeMusics = document.select("ul.unstyled.songs").select("li.item");
             for (Element element : elementsCodeMusics) {
-                String[] array = new String[4];
-                array[0] = element.select("li.item").attr("data-artist");
-                array[1] = element.select("li.item").attr("data-title");
-                array[2] = element.select("li.play").attr("data-url");
-                array[3] = element.select("img").attr("data-src");
-                arrayListAttributesMusic.add(array);
+                arrayListAttributesMusic.add(new AttributesMusic(
+                        element.select("li.item").attr("data-artist"),
+                        element.select("li.item").attr("data-title"),
+                        element.select("li.play").attr("data-url"),
+                        element.select("img").attr("data-src")));
             }
         }
         return arrayListAttributesMusic;

@@ -1,4 +1,4 @@
-package ru.pochemuchki.musicproject;
+package ru.pochemuchki.musicproject.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -13,9 +13,5 @@ public class ExitController {
     @FXML
     private void clickNo() {
         ((Stage) window.getScene().getWindow()).close();
-    }
-    @FXML
-    public void initialize() {
-
     }
 }

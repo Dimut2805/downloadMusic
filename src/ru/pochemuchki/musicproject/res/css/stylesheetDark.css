@@ -78,14 +78,14 @@
 }
 
 #playMusicButton {
-	-fx-background-image: url("playMusicPlayerWhite.png");
+	-fx-background-image: url("/ru/pochemuchki/musicproject/res/drawable/blackStyle/playMusicPlayerWhite.png");
 	-fx-background-repeat: no-repeat;
 }
 #stopMusicButton {
-    -fx-background-image: url("stopPlayerWhite.png");
+    -fx-background-image: url("/ru/pochemuchki/musicproject/res/drawable/blackStyle/stopPlayerWhite.png");
 	-fx-background-repeat: no-repeat;
 }
 #deleteMusicFromPlayerButton {
-    -fx-background-image: url("deleteMusicFromPlayerWhite.png");
+    -fx-background-image: url("/ru/pochemuchki/musicproject/res/drawable/blackStyle/deleteMusicFromPlayerWhite.png");
 	-fx-background-repeat: no-repeat;
 }
