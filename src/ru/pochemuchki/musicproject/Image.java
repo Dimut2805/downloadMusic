@@ -44,7 +44,7 @@ public class Image implements Constains {
     }
 
     public void removeImage(String nameImg){
-        File imageFile = new File(PATH_IMAGE + "\\" + nameImg);
+        File imageFile = new File(BASE_DIR_DOWNLOADER_MUSIC_PICTURE + "\\" + nameImg);
         imageFile.delete();
     }
 }

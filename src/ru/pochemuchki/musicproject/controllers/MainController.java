@@ -13,17 +13,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import ru.pochemuchki.musicproject.*;
 import ru.pochemuchki.musicproject.objects.AttributesMusic;
-import ru.pochemuchki.musicproject.objects.GUI;
 import ru.pochemuchki.musicproject.objects.MyPlayer;
 import ru.pochemuchki.musicproject.utils.BaseOperation;
+import ru.pochemuchki.musicproject.utils.DirectoryUtils;
 import ru.pochemuchki.musicproject.utils.FindAttributeMusic;
-import ru.pochemuchki.musicproject.utils.NetworkUtils;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainController extends BaseOperation implements NetworkUtils {
+public class MainController extends BaseOperation {
     MyPlayer myPlayer;
     Integer intNumberListenMusicButton;
     Button listenMusicOn;
@@ -49,16 +49,11 @@ public class MainController extends BaseOperation implements NetworkUtils {
     String urlSection;
 
     @FXML
-    private void clickExit() {
-        GUI.exitGUI();
-    }
-
-    @FXML
     private void clickFindMusicOnSite() {
         if (vboxContentDownloadScrollPane.getChildren().size() != 0) {
             vboxContentDownloadScrollPane.getChildren().clear();
         }
-        ArrayList<AttributesMusic> attributeMusic = FindAttributeMusic.findAttributesMusic(urlSection);
+        List<AttributesMusic> attributeMusic = FindAttributeMusic.findAttributesMusic(urlSection);
         int numberMusic = 1;
         for (AttributesMusic attributes : attributeMusic) {
             Text nameMusic = new Text(numberMusic + ". " + attributes.getAuthor() + " - " + attributes.getNameMusic()) {{
@@ -76,7 +71,7 @@ public class MainController extends BaseOperation implements NetworkUtils {
     private void downloadMusicButton(AttributesMusic attributes) {
         Task<Void> task = new Task<Void>() {
             @Override
-            protected Void call() throws Exception {
+            protected Void call() {
                 new Song().downloadSong(attributes.getUrlMusic(), attributes.getAuthor() + " - " + attributes.getNameMusic());
                 try {
                     new Image().downloadImage(attributes.getUrlImage(), attributes.getAuthor() + " - " + attributes.getNameMusic());
@@ -104,7 +99,7 @@ public class MainController extends BaseOperation implements NetworkUtils {
         if (vboxContentPathMusic.getChildren().size() != 0) {
             vboxContentPathMusic.getChildren().clear();
         }
-        ArrayList<String> musicsPath = getMusics();
+        ArrayList<String> musicsPath = DirectoryUtils.getMusics();
         int numberMusic = 1;
         for (String music : musicsPath) {
             Label nameMusic = new Label(numberMusic + ". " + music) {{
@@ -112,9 +107,10 @@ public class MainController extends BaseOperation implements NetworkUtils {
             }};
             ImageView imageView = null;
             try {
-                imageView = new ImageView(new javafx.scene.image.Image(fileIconPlayer(music).toURI().toURL().toString()));
-                imageView.setFitWidth(50);
-                imageView.setFitHeight(50);
+                imageView = new ImageView(new javafx.scene.image.Image(fileIconPlayer(music).toURI().toURL().toString())) {{
+                    setFitWidth(50);
+                    setFitHeight(50);
+                }};
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -132,14 +128,14 @@ public class MainController extends BaseOperation implements NetworkUtils {
 
     private File fileIconPlayer(String nameMusic) {
         String namePicture = nameMusic.substring(0, nameMusic.length() - 4);
-        return findObjectInDir(BASE_DIR_DOWNLOADER_MUSIC_PICTURE + namePicture) ?
-                new File(PATH_IMAGE + "\\DownloaderMusicPicture\\" + namePicture) :
-                new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\DedaultTrackIcon.jpg");
+        return DirectoryUtils.findObjectInDir(BASE_DIR_DOWNLOADER_MUSIC_PICTURE + namePicture) ?
+                new File(BASE_DIR_DOWNLOADER_MUSIC_PICTURE + namePicture) :
+                new File(BASE_IMAGE_JPG_BASE_ICON);
     }
 
     private void addMusicInPlayer(String nameMusic, Button button, int numberMusic) {
         if (intNumberListenMusicButton != null) {
-            ((Button) ((HBox) vboxContentPathMusic.getChildren().get(intNumberListenMusicButton - 1)).getChildren().get(2)).setDisable(false);
+            (((HBox) vboxContentPathMusic.getChildren().get(intNumberListenMusicButton - 1)).getChildren().get(2)).setDisable(false);
         }
         button.setDisable(true);
         intNumberListenMusicButton = numberMusic;
@@ -147,7 +143,11 @@ public class MainController extends BaseOperation implements NetworkUtils {
         deleteFromPlayerButton.setDisable(false);
         myPlayer.setNameMusic(new Label(nameMusic));
         nameMusicAtPlayer.setText(myPlayer.getNameMusic().getText());
-        myPlayer.setIconMusic(new ImageView(new javafx.scene.image.Image(createFileUrlString(fileIconPlayer(nameMusic)))));
+        try {
+            myPlayer.setIconMusic(new ImageView(new javafx.scene.image.Image(fileIconPlayer(nameMusic).toURI().toURL().toString())));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         imagePlayer.setImage(myPlayer.getIconMusic().getImage());
     }
 
@@ -176,11 +176,12 @@ public class MainController extends BaseOperation implements NetworkUtils {
     }
 
     private void deleteMusicButton(String music) {
+        String namePicture = music.substring(0, music.length() - 4);
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                deleteMusic(music);
-                new Image().removeImage(music);
+                DirectoryUtils.deleteMusic(music);
+                new Image().removeImage(namePicture);
                 startUpdatePathMusic();
                 return null;
             }
@@ -197,9 +198,13 @@ public class MainController extends BaseOperation implements NetworkUtils {
     public void initialize() {
         listenMusicOn = new Button();
         myPlayer = new MyPlayer();
-        imagePlayer.setImage(
-                new javafx.scene.image.Image(
-                        createFileUrlString(new File(BASE_IMAGE_JPG_NOT_FOUND_MUSIC))));
+        try {
+            imagePlayer.setImage(
+                    new javafx.scene.image.Image(
+                            new File(BASE_IMAGE_JPG_NOT_FOUND_MUSIC).toURI().toURL().toString()));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         startUpdatePathMusic();
     }
 }

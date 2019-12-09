@@ -9,6 +9,7 @@ import ru.pochemuchki.musicproject.constains.Constains;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FindAttributeMusic implements Constains {
 
@@ -17,20 +18,20 @@ public class FindAttributeMusic implements Constains {
      *
      * @return список ссылок на скачивание
      */
-    public static ArrayList<AttributesMusic> findAttributesMusic(String url) {
-        ArrayList<AttributesMusic> arrayListAttributesMusic = new ArrayList<>();
+    public static List<AttributesMusic> findAttributesMusic(String url) {
+        List<AttributesMusic> listAttributesMusic = new ArrayList<>();
         if (url != null) {
             Document document = createDocumentHTML(url);
             Elements elementsCodeMusics = document.select("ul.unstyled.songs").select("li.item");
             for (Element element : elementsCodeMusics) {
-                arrayListAttributesMusic.add(new AttributesMusic(
+                listAttributesMusic.add(new AttributesMusic(
                         element.select("li.item").attr("data-artist"),
                         element.select("li.item").attr("data-title"),
                         element.select("li.play").attr("data-url"),
                         element.select("img").attr("data-src")));
             }
         }
-        return arrayListAttributesMusic;
+        return listAttributesMusic;
     }
 
     private static Document createDocumentHTML(String url) {

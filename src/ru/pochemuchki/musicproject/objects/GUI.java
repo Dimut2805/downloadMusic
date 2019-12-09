@@ -8,10 +8,11 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ru.pochemuchki.musicproject.constains.Constains;
 import ru.pochemuchki.musicproject.constains.ResourseObjectsConstains;
+import ru.pochemuchki.musicproject.utils.BaseOperation;
 
 import java.io.IOException;
 
-public class GUI implements Constains, ResourseObjectsConstains {
+public class GUI extends BaseOperation implements Constains, ResourseObjectsConstains {
     Stage window;
 
     public GUI(Stage stage) {
@@ -29,8 +30,10 @@ public class GUI implements Constains, ResourseObjectsConstains {
                 @Override
                 public void handle(WindowEvent event) {
                     event.consume();
+                    exitGUI();
                 }
             });
+            installationBaseObjects();
             window.show();
         } catch (IOException e) {
             e.printStackTrace();

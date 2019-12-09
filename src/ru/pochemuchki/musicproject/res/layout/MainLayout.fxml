@@ -8,9 +8,6 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.controllers.MainController" spacing="10"
       fx:id="window" id="bg">
     <MenuBar id="bg">
-        <Menu text="Файл">
-            <MenuItem id="mi" text="Выйти" onAction="#clickExit"/>
-        </Menu>
         <Menu text="Справка">
             <MenuItem id="mi" text="О программе"/>
         </Menu>
