@@ -1,3 +1,5 @@
+package ru.pochemuchki.musicproject;
+
 import ru.pochemuchki.musicproject.constains.Constains;
 
 import java.io.*;

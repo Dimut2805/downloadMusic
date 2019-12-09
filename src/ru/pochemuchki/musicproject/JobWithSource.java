@@ -1,3 +1,5 @@
+package ru.pochemuchki.musicproject;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
