@@ -1,6 +1,5 @@
 package ru.pochemuchki.musicproject.objects;
 
-import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,13 +7,12 @@ import ru.pochemuchki.musicproject.JobWithSource;
 import ru.pochemuchki.musicproject.constains.Constains;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 
 public class MyPlayer implements Constains {
+    JobWithSource jobWithSource = new JobWithSource();
     private ImageView iconMusic;
     private Label nameMusic;
-    JobWithSource jobWithSource = new JobWithSource();
 
     public MyPlayer() {
         nameMusic = new Label("Не выбрано");
@@ -50,7 +48,11 @@ public class MyPlayer implements Constains {
         this.iconMusic = iconMusic;
     }
 
-    public void on() {jobWithSource.startPlayer(nameMusic.getText()); }
+    public void on() {
+            jobWithSource.startPlayer(nameMusic.getText());
+    }
 
-    public void off() { jobWithSource.stopPlayer(); }
+    public void off() {
+        jobWithSource.stopPlayer();
+    }
 }

@@ -10,25 +10,29 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import ru.pochemuchki.musicproject.*;
+import ru.pochemuchki.musicproject.DownloadsSource;
+import ru.pochemuchki.musicproject.GUI;
+import ru.pochemuchki.musicproject.JobWithSource;
 import ru.pochemuchki.musicproject.objects.AttributesMusic;
 import ru.pochemuchki.musicproject.objects.MyPlayer;
 import ru.pochemuchki.musicproject.utils.BaseOperation;
 import ru.pochemuchki.musicproject.utils.DirectoryUtils;
 import ru.pochemuchki.musicproject.utils.FindAttributeMusic;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.pochemuchki.musicproject.utils.DirectoryUtils.deleteMusic;
+
 public class MainController extends BaseOperation {
-    JobWithSource jobWithSource = new JobWithSource();
-    DownloadsSource downloadsSource = new DownloadsSource();
     MyPlayer myPlayer;
     Integer intNumberListenMusicButton;
     Button listenMusicOn;
+    DownloadsSource download = new DownloadsSource();
+    JobWithSource jobWithSource = new JobWithSource();
     @FXML
     Button stopMusicButton;
     @FXML
@@ -51,6 +55,11 @@ public class MainController extends BaseOperation {
     String urlSection;
 
     @FXML
+    private void clickExit() {
+        GUI.exitGUI();
+    }
+
+    @FXML
     private void clickFindMusicOnSite() {
         if (vboxContentDownloadScrollPane.getChildren().size() != 0) {
             vboxContentDownloadScrollPane.getChildren().clear();
@@ -58,7 +67,7 @@ public class MainController extends BaseOperation {
         List<AttributesMusic> attributeMusic = FindAttributeMusic.findAttributesMusic(urlSection);
         int numberMusic = 1;
         for (AttributesMusic attributes : attributeMusic) {
-            Text nameMusic = new Text(numberMusic + ". " + attributes.getAuthor() + " - " + attributes.getNameMusic()) {{
+            Label nameMusic = new Label(numberMusic + ". " + attributes.getAuthor() + " - " + attributes.getNameMusic()) {{
                 setFont(Font.font(15));
             }};
             Button buttonDownload = new Button("Cкачать") {{
@@ -73,10 +82,10 @@ public class MainController extends BaseOperation {
     private void downloadMusicButton(AttributesMusic attributes) {
         Task<Void> task = new Task<Void>() {
             @Override
-            protected Void call() {
-                downloadsSource.downloadSong(attributes.getUrlMusic(), attributes.getAuthor() + " - " + attributes.getNameMusic());
+            protected Void call() throws Exception {
+                download.downloadSong(attributes.getUrlMusic(), attributes.getAuthor() + " - " + attributes.getNameMusic());
                 try {
-                    downloadsSource.downloadImage(attributes.getUrlImage(), attributes.getAuthor() + " - " + attributes.getNameMusic());
+                    download.downloadImage(attributes.getUrlImage(), attributes.getAuthor() + " - " + attributes.getNameMusic());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -175,6 +184,7 @@ public class MainController extends BaseOperation {
     private void stopMusicButton() {
         listenMusicButton.setDisable(false);
         deleteFromPlayerButton.setDisable(false);
+        myPlayer.off();
     }
 
     private void deleteMusicButton(String music) {
@@ -182,7 +192,9 @@ public class MainController extends BaseOperation {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                DirectoryUtils.deleteMusic(music);
+                deleteMusic(music);
+                new JobWithSource().removeImage(music);
+                deleteMusic(music);
                 jobWithSource.removeImage(namePicture);
                 startUpdatePathMusic();
                 return null;

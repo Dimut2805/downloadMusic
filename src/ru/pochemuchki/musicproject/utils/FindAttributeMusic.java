@@ -4,10 +4,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import ru.pochemuchki.musicproject.objects.AttributesMusic;
 import ru.pochemuchki.musicproject.constains.Constains;
+import ru.pochemuchki.musicproject.objects.AttributesMusic;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
