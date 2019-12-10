@@ -4,8 +4,8 @@ import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import ru.pochemuchki.musicproject.JobWithSource;
 import ru.pochemuchki.musicproject.constains.Constains;
-import ru.pochemuchki.musicproject.Song;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 public class MyPlayer implements Constains {
     private ImageView iconMusic;
     private Label nameMusic;
+    JobWithSource jobWithSource = new JobWithSource();
 
     public MyPlayer() {
         nameMusic = new Label("Не выбрано");
@@ -49,17 +50,7 @@ public class MyPlayer implements Constains {
         this.iconMusic = iconMusic;
     }
 
-    public void on() {
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws FileNotFoundException {
-                new Song().jobWithSong(nameMusic.getText(), "start");
-                return null;
-            }
-        };
-        new Thread(task).start();
-    }
+    public void on() {jobWithSource.startPlayer(nameMusic.getText()); }
 
-    public void off() {
-    }
+    public void off() { jobWithSource.stopPlayer(); }
 }

@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainController extends BaseOperation {
+    JobWithSource jobWithSource = new JobWithSource();
+    DownloadsSource downloadsSource = new DownloadsSource();
     MyPlayer myPlayer;
     Integer intNumberListenMusicButton;
     Button listenMusicOn;
@@ -72,9 +74,9 @@ public class MainController extends BaseOperation {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() {
-                new Song().downloadSong(attributes.getUrlMusic(), attributes.getAuthor() + " - " + attributes.getNameMusic());
+                downloadsSource.downloadSong(attributes.getUrlMusic(), attributes.getAuthor() + " - " + attributes.getNameMusic());
                 try {
-                    new Image().downloadImage(attributes.getUrlImage(), attributes.getAuthor() + " - " + attributes.getNameMusic());
+                    downloadsSource.downloadImage(attributes.getUrlImage(), attributes.getAuthor() + " - " + attributes.getNameMusic());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -181,7 +183,7 @@ public class MainController extends BaseOperation {
             @Override
             protected Void call() throws Exception {
                 DirectoryUtils.deleteMusic(music);
-                new Image().removeImage(namePicture);
+                jobWithSource.removeImage(namePicture);
                 startUpdatePathMusic();
                 return null;
             }
