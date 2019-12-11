@@ -81,6 +81,10 @@
 	-fx-background-image: url("/ru/pochemuchki/musicproject/res/drawable/blackStyle/playMusicPlayerWhite.png");
 	-fx-background-repeat: no-repeat;
 }
+#pauseMusicButton {
+	-fx-background-image: url("/ru/pochemuchki/musicproject/res/drawable/blackStyle/pauseMusicPlayerWhite.png");
+	-fx-background-repeat: no-repeat;
+}
 #stopMusicButton {
     -fx-background-image: url("/ru/pochemuchki/musicproject/res/drawable/blackStyle/stopPlayerWhite.png");
 	-fx-background-repeat: no-repeat;

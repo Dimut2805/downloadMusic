@@ -53,6 +53,8 @@ public class MainController extends BaseOperation {
     public ComboBox<String> sections;
     @FXML
     String urlSection;
+    @FXML
+    Button pauseMusicButton;
 
     @FXML
     private void clickExit() {
@@ -78,6 +80,10 @@ public class MainController extends BaseOperation {
         }
     }
 
+    @FXML
+    private void pauseMusicButton() {
+        myPlayer.pause();
+    }
 
     private void downloadMusicButton(AttributesMusic attributes) {
         Task<Void> task = new Task<Void>() {

@@ -48,8 +48,12 @@ public class MyPlayer implements Constains {
         this.iconMusic = iconMusic;
     }
 
+    public void pause() {
+        jobWithSource.pausePlayer();
+    }
+
     public void on() {
-            jobWithSource.startPlayer(nameMusic.getText());
+        jobWithSource.startPlayer(nameMusic.getText());
     }
 
     public void off() {

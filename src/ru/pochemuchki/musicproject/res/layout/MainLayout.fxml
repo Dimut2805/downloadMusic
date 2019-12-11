@@ -5,7 +5,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.controllers.MainController" spacing="10"
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.controllers.MainController"
+      spacing="10"
       fx:id="window" id="bg">
     <MenuBar id="bg">
         <Menu text="Справка">
@@ -19,7 +20,7 @@
             <VBox spacing="10">
                 <HBox>
                     <Label text="Разделы"/>
-                    <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано" >
+                    <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
                                 <String fx:value="Не выбрано"/>
@@ -63,6 +64,8 @@
                     <HBox>
                         <Button prefWidth="50" prefHeight="50" id="playMusicButton" disable="true"
                                 fx:id="listenMusicButton" onAction="#listenMusicButton"/>
+                        <Button prefWidth="50" prefHeight="50" id="pauseMusicButton" disable="false"
+                                fx:id="pauseMusicButton" onAction="#pauseMusicButton"/>
                         <Button prefWidth="50" prefHeight="50" id="stopMusicButton" disable="true"
                                 fx:id="stopMusicButton" onAction="#stopMusicButton"/>
                         <Button prefWidth="50" prefHeight="50" id="deleteMusicFromPlayerButton" disable="true"

@@ -10,10 +10,10 @@ import java.io.File;
 /**
  * Класс для работы с ресурсами
  * Методы :
- *        startPlay - Предназначен для воспроизведения плеера
- *        pausePlayer - Предназначен для паузы плеера
- *        stopPlay - Предназначен для остановки плеера
- *        removeImage - предназначен для удаления картинок
+ * startPlay - Предназначен для воспроизведения плеера
+ * pausePlayer - Предназначен для паузы плеера
+ * stopPlay - Предназначен для остановки плеера
+ * removeImage - предназначен для удаления картинок
  */
 public class JobWithSource implements Constains {
     Media mediafile = null;
@@ -26,13 +26,11 @@ public class JobWithSource implements Constains {
      */
 
     public void startPlayer(String nameFile) {
-        System.out.println(nameFile);
-        if(mediaplayer == null) {
+        if (mediaplayer == null) {
             mediafile = new Media(new File(PATH_MUSICS + nameFile).toURI().toString());
             mediaplayer = new MediaPlayer(mediafile);
             mediaplayer.play();
-        }
-        else{
+        } else {
             if (mediaplayer.getStatus() == MediaPlayer.Status.PAUSED) {
                 mediaplayer.setStartTime(CurrentTime);
                 mediaplayer.play();
@@ -43,7 +41,6 @@ public class JobWithSource implements Constains {
                 mediaplayer.play();
             }
         }
-
     }
 
     /**
@@ -63,11 +60,13 @@ public class JobWithSource implements Constains {
             mediaplayer.stop();
         }
     }
+
     /**
      * Метод для удаления картинки
+     *
      * @param nameImg - имя картики
      */
-    public void removeImage(String nameImg){
+    public void removeImage(String nameImg) {
         File imageFile = new File(PATH_IMAGE + "\\" + nameImg);
         imageFile.delete();
     }
