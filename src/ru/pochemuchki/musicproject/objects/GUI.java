@@ -1,4 +1,4 @@
-package ru.pochemuchki.musicproject;
+package ru.pochemuchki.musicproject.objects;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +21,7 @@ public class GUI extends BaseOperation implements Constains, ResourseObjectsCons
 
     public void createGUI() {
         try {
-            Parent root = FXMLLoader.load(this.getClass().getResource(SRC_FXML_MAIN_LAYOUT));
+            Parent root = FXMLLoader.load(getClass().getResource(SRC_FXML_MAIN_LAYOUT));
             Scene scene = new Scene(root);
             scene.getStylesheets().add(String.valueOf(this.getClass().getResource(SRC_CSS_BLACK_STYLE)));
             window.setTitle("Приложение для скачивания музыки.");

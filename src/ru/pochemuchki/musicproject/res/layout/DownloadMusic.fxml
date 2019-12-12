@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ru.pochemuchki.musicproject.controllers.DownloadMusicController">
+    <HBox>
+        <Label text="Разделы"/>
+        <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Не выбрано"/>
+                    <String fx:value="Топ-100"/>
+                    <String fx:value="Billie Eilish"/>
+                    <String fx:value="Григорий Лепс"/>
+                    <String fx:value="Группа Кино"/>
+                    <String fx:value="Макс Корж"/>
+                    <String fx:value="Lindsey Stirling"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <Button text="Найти" onAction="#clickFindMusicOnSite"/>
+    </HBox>
+
+    <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
+        <content>
+            <VBox fx:id="vboxContentDownloadScrollPane"/>
+        </content>
+    </ScrollPane>
+</VBox>

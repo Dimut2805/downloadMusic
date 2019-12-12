@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import java.lang.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.controllers.MainController"
       spacing="10"
       fx:id="window" id="bg">
@@ -17,63 +14,9 @@
               alignment="CENTER"
               prefHeight="600">
         <HBox spacing="10">
-            <VBox spacing="10">
-                <HBox>
-                    <Label text="Разделы"/>
-                    <ComboBox fx:id="sections" onAction="#getComboBox" promptText="Не указано">
-                        <items>
-                            <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="Не выбрано"/>
-                                <String fx:value="Топ-100"/>
-                                <String fx:value="Billie Eilish"/>
-                                <String fx:value="Григорий Лепс"/>
-                                <String fx:value="Группа Кино"/>
-                                <String fx:value="Макс Корж"/>
-                                <String fx:value="Lindsey Stirling"/>
-                            </FXCollections>
-                        </items>
-                    </ComboBox>
-
-                    <Button text="Найти" onAction="#clickFindMusicOnSite"/>
-                </HBox>
-
-                <ScrollPane prefViewportHeight="350" prefViewportWidth="600">
-                    <content>
-                        <VBox fx:id="vboxContentDownloadScrollPane"/>
-                    </content>
-                </ScrollPane>
-            </VBox>
-            <VBox spacing="10">
-                <HBox spacing="10">
-                    <Label text="Моя музыка"/>
-                    <Button text="Обновить" onAction="#startUpdatePathMusic"/>
-                </HBox>
-                <ScrollPane prefViewportHeight="350" prefViewportWidth="600" id="main">
-                    <content>
-                        <VBox fx:id="vboxContentPathMusic"/>
-                    </content>
-                </ScrollPane>
-            </VBox>
+            <fx:include fx:id="downloadMusic" source="DownloadMusic.fxml" />
+            <fx:include fx:id="myMusic" source="MyMusic.fxml" />
         </HBox>
-        <VBox>
-            <Label text="Плеер"/>
-            <HBox>
-                <ImageView fx:id="imagePlayer" fitWidth="50" fitHeight="50"/>
-                <VBox>
-                    <Label text="Не выбрано" fx:id="nameMusicAtPlayer"/>
-                    <HBox>
-                        <Button prefWidth="50" prefHeight="50" id="playMusicButton" disable="true"
-                                fx:id="listenMusicButton" onAction="#listenMusicButton"/>
-                        <Button prefWidth="50" prefHeight="50" id="pauseMusicButton" disable="false"
-                                fx:id="pauseMusicButton" onAction="#pauseMusicButton"/>
-                        <Button prefWidth="50" prefHeight="50" id="stopMusicButton" disable="true"
-                                fx:id="stopMusicButton" onAction="#stopMusicButton"/>
-                        <Button prefWidth="50" prefHeight="50" id="deleteMusicFromPlayerButton" disable="true"
-                                fx:id="deleteFromPlayerButton"
-                                onAction="#deleteFromPlayerButton"/>
-                    </HBox>
-                </VBox>
-            </HBox>
-        </VBox>
+        <fx:include fx:id="player" source="PlayerLayout.fxml" />
     </FlowPane>
 </VBox>

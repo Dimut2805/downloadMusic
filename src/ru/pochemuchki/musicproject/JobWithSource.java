@@ -66,7 +66,7 @@ public class JobWithSource implements Constains {
      *
      * @param nameImg - имя картики
      */
-    public void removeImage(String nameImg) {
+    public static void removeImage(String nameImg) {
         File imageFile = new File(PATH_IMAGE + "\\" + nameImg);
         imageFile.delete();
     }
