@@ -5,7 +5,7 @@ import javafx.scene.layout.VBox;
 import ru.pochemuchki.musicproject.utils.BaseOperation;
 
 
-public class MainController extends BaseOperation {
+public class MainController {
     @FXML
     PlayerController playerController;
     @FXML
