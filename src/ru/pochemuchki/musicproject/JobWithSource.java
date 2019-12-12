@@ -26,11 +26,8 @@ public class JobWithSource implements Constains {
      */
 
     public void startPlayer(String nameFile) {
-        if (mediaplayer == null) {
-            mediafile = new Media(new File(PATH_MUSICS + nameFile).toURI().toString());
-            mediaplayer = new MediaPlayer(mediafile);
-            mediaplayer.play();
-        } else {
+        mediafile = new Media(new File(PATH_MUSICS + nameFile).toURI().toString());
+        mediaplayer = new MediaPlayer(mediafile);
             if (mediaplayer.getStatus() == MediaPlayer.Status.PAUSED) {
                 mediaplayer.setStartTime(CurrentTime);
                 mediaplayer.play();
@@ -40,8 +37,11 @@ public class JobWithSource implements Constains {
                 mediaplayer.setStartTime(Duration.ZERO);
                 mediaplayer.play();
             }
+            else{
+                mediaplayer.play();
+            }
         }
-    }
+
 
     /**
      * метод паузы воспроизведения
