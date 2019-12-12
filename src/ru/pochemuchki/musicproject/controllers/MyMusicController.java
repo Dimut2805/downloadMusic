@@ -5,11 +5,13 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import ru.pochemuchki.musicproject.constains.Constains;
+import ru.pochemuchki.musicproject.objects.MyPlayer;
 import ru.pochemuchki.musicproject.utils.DirectoryUtils;
 
 import java.io.File;
@@ -20,6 +22,7 @@ import static ru.pochemuchki.musicproject.JobWithSource.removeImage;
 import static ru.pochemuchki.musicproject.utils.DirectoryUtils.deleteMusic;
 
 public class MyMusicController implements Constains {
+    MyPlayer myPlayer;
     Integer intNumberListenMusicButton;
     @FXML
     PlayerController playerController;
@@ -34,6 +37,10 @@ public class MyMusicController implements Constains {
                 updatePathMusic();
             }
         });
+    }
+
+    public void setMyPlayer(MyPlayer myPlayer) {
+        this.myPlayer = myPlayer;
     }
 
     public void setPlayerController(PlayerController playerController) {
@@ -55,14 +62,12 @@ public class MyMusicController implements Constains {
         intNumberListenMusicButton = numberMusic;
         playerController.listenMusicButton.setDisable(false);
         playerController.deleteFromPlayerButton.setDisable(false);
-        playerController.myPlayer.setNameMusic(new Label(nameMusic));
-        playerController.nameMusicAtPlayer.setText(playerController.myPlayer.getNameMusic().getText());
+        myPlayer.setNameMusic(nameMusic);
         try {
-            playerController.myPlayer.setIconMusic(new ImageView(new javafx.scene.image.Image(fileIconPlayer(nameMusic).toURI().toURL().toString())));
+            myPlayer.setIconMusic(new Image(fileIconPlayer(nameMusic).toURI().toURL().toString()));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        playerController.imagePlayer.setImage(playerController.myPlayer.getIconMusic().getImage());
     }
 
     private void deleteMusicButton(String music) {
@@ -91,7 +96,7 @@ public class MyMusicController implements Constains {
             }};
             ImageView imageView = null;
             try {
-                imageView = new ImageView(new javafx.scene.image.Image(fileIconPlayer(music).toURI().toURL().toString())) {{
+                imageView = new ImageView(new Image(fileIconPlayer(music).toURI().toURL().toString())) {{
                     setFitWidth(50);
                     setFitHeight(50);
                 }};

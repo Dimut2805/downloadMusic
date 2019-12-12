@@ -33,14 +33,17 @@ public class PlayerController implements Constains {
         deleteFromPlayerButton.setDisable(false);
         myPlayer.pause();
     }
+    void setMyPlayer(MyPlayer myPlayer) {
+        this.myPlayer = myPlayer;
+    }
 
     @FXML
-    void stopMusicButton() {
+    private void stopMusicButton() {
         myPlayer.off();
     }
 
     @FXML
-    public void listenMusicButton() {
+    private void listenMusicButton() {
         listenMusicButton.setDisable(true);
         stopMusicButton.setDisable(false);
         pauseMusicButton.setDisable(false);
@@ -61,7 +64,6 @@ public class PlayerController implements Constains {
 
     @FXML
     public void initialize() {
-        myPlayer = new MyPlayer();
         try {
             imagePlayer.setImage(
                     new javafx.scene.image.Image(

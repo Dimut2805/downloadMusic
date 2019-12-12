@@ -16,7 +16,6 @@ public class MyPlayer implements Constains {
 
     public MyPlayer() {
         jobWithSource = new JobWithSource();
-        nameMusic = new Label("Не выбрано");
         try {
             iconMusic = new ImageView(new Image(new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\BaseIconNotFoundMusic.jpg").toURI().toURL().toString()));
         } catch (MalformedURLException e) {
@@ -25,7 +24,7 @@ public class MyPlayer implements Constains {
     }
 
     public void setBaseSettingPlayer() {
-        nameMusic = new Label("Не выбрано");
+        nameMusic.setText("Не выбрано");
         try {
             iconMusic = new ImageView(new Image(new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\BaseIconNotFoundMusic.jpg").toURI().toURL().toString()));
         } catch (MalformedURLException e) {
@@ -41,12 +40,19 @@ public class MyPlayer implements Constains {
         return iconMusic;
     }
 
-    public void setNameMusic(Label nameMusic) {
+    public void setLabelMusic(Label nameMusic) {
         this.nameMusic = nameMusic;
     }
-
-    public void setIconMusic(ImageView iconMusic) {
+   public void setImageViewMusic(ImageView iconMusic) {
         this.iconMusic = iconMusic;
+    }
+
+    public void setNameMusic(String nameMusic) {
+        this.nameMusic.setText(nameMusic);
+    }
+
+    public void setIconMusic(Image image) {
+        iconMusic.setImage(image);
     }
 
     public void pause() {
