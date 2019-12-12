@@ -27,6 +27,10 @@ public class PlayerController implements Constains {
 
     @FXML
     private void pauseMusicButton() {
+        listenMusicButton.setDisable(false);
+        stopMusicButton.setDisable(true);
+        pauseMusicButton.setDisable(true);
+        deleteFromPlayerButton.setDisable(false);
         myPlayer.pause();
     }
 
