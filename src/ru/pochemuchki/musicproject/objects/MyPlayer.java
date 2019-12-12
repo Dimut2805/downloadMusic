@@ -10,11 +10,12 @@ import java.io.File;
 import java.net.MalformedURLException;
 
 public class MyPlayer implements Constains {
-    JobWithSource jobWithSource = new JobWithSource();
+    private JobWithSource jobWithSource;
     private ImageView iconMusic;
     private Label nameMusic;
 
     public MyPlayer() {
+        jobWithSource = new JobWithSource();
         nameMusic = new Label("Не выбрано");
         try {
             iconMusic = new ImageView(new Image(new File(PATH_IMAGE + "\\DownloaderMusicPicture\\basePicture\\BaseIconNotFoundMusic.jpg").toURI().toURL().toString()));
