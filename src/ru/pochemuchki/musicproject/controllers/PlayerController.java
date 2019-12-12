@@ -28,7 +28,7 @@ public class PlayerController implements Constains {
     @FXML
     private void pauseMusicButton() {
         listenMusicButton.setDisable(false);
-        stopMusicButton.setDisable(true);
+        stopMusicButton.setDisable(false);
         pauseMusicButton.setDisable(true);
         deleteFromPlayerButton.setDisable(false);
         myPlayer.pause();
@@ -47,7 +47,7 @@ public class PlayerController implements Constains {
         listenMusicButton.setDisable(true);
         stopMusicButton.setDisable(false);
         pauseMusicButton.setDisable(false);
-        deleteFromPlayerButton.setDisable(true);
+        deleteFromPlayerButton.setDisable(false);
         myPlayer.on();
     }
 
@@ -58,18 +58,7 @@ public class PlayerController implements Constains {
         listenMusicButton.setDisable(true);
         pauseMusicButton.setDisable(true);
         deleteFromPlayerButton.setDisable(true);
-        imagePlayer.setImage(myPlayer.getIconMusic().getImage());
-        nameMusicAtPlayer.setText(myPlayer.getNameMusic().getText());
-    }
-
-    @FXML
-    public void initialize() {
-        try {
-            imagePlayer.setImage(
-                    new javafx.scene.image.Image(
-                            new File(BASE_IMAGE_JPG_NOT_FOUND_MUSIC).toURI().toURL().toString()));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        myPlayer.setBaseSettingPlayer();
+        myPlayer.off();
     }
 }

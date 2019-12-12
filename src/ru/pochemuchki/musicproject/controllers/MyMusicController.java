@@ -57,11 +57,14 @@ public class MyMusicController implements Constains {
     private void addMusicInPlayer(String nameMusic, Button button, int numberMusic) {
         if (intNumberListenMusicButton != null) {
             (((HBox) vboxContentPathMusic.getChildren().get(intNumberListenMusicButton - 1)).getChildren().get(2)).setDisable(false);
+            myPlayer.off();
         }
         button.setDisable(true);
         intNumberListenMusicButton = numberMusic;
         playerController.listenMusicButton.setDisable(false);
         playerController.deleteFromPlayerButton.setDisable(false);
+        playerController.pauseMusicButton.setDisable(true);
+        playerController.stopMusicButton.setDisable(true);
         myPlayer.setNameMusic(nameMusic);
         try {
             myPlayer.setIconMusic(new Image(fileIconPlayer(nameMusic).toURI().toURL().toString()));
