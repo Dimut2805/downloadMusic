@@ -7,8 +7,6 @@ import javafx.scene.image.ImageView;
 import ru.pochemuchki.musicproject.constains.Constains;
 import ru.pochemuchki.musicproject.objects.MyPlayer;
 
-import java.io.File;
-import java.net.MalformedURLException;
 
 public class PlayerController implements Constains {
     MyPlayer myPlayer;

@@ -7,6 +7,8 @@ import ru.pochemuchki.musicproject.objects.MyPlayer;
 
 public class MainController {
     @FXML
+    DownloadMusicController downloadMusicController;
+    @FXML
     PlayerController playerController;
     @FXML
     MyMusicController myMusicController;
@@ -17,6 +19,7 @@ public class MainController {
         MyPlayer myPlayer = new MyPlayer();
         myPlayer.setLabelMusic(playerController.nameMusicAtPlayer);
         myPlayer.setImageViewMusic(playerController.imagePlayer);
+        downloadMusicController.setMyMusicController(myMusicController);
         myMusicController.setMyPlayer(myPlayer);
         playerController.setMyPlayer(myPlayer);
         myMusicController.setPlayerController(playerController);
