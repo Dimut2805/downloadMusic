@@ -19,6 +19,7 @@ public class JobWithSource implements Constains {
     Media mediafile = null;
     MediaPlayer mediaplayer = null;
     Duration CurrentTime = null;
+    String saveName = "nameSong";
 
 
     /**
@@ -26,21 +27,24 @@ public class JobWithSource implements Constains {
      */
 
     public void startPlayer(String nameFile) {
-        mediafile = new Media(new File(PATH_MUSICS + nameFile).toURI().toString());
-        mediaplayer = new MediaPlayer(mediafile);
-            if (mediaplayer.getStatus() == MediaPlayer.Status.PAUSED) {
-                mediaplayer.setStartTime(CurrentTime);
-                mediaplayer.play();
-            }
-            if (mediaplayer.getStatus() == MediaPlayer.Status.STOPPED) {
-                mediaplayer.stop();
-                mediaplayer.setStartTime(Duration.ZERO);
-                mediaplayer.play();
-            }
-            else{
-                mediaplayer.play();
-            }
+        if (saveName.equals(nameFile)) {
+                if (mediaplayer.getStatus() == MediaPlayer.Status.PAUSED) {
+                    mediaplayer.setStartTime(CurrentTime);
+                    mediaplayer.play();
+                }
+                if (mediaplayer.getStatus() == MediaPlayer.Status.STOPPED) {
+                    mediaplayer.stop();
+                    mediaplayer.setStartTime(Duration.ZERO);
+                    mediaplayer.play();
+                }
+        } else {
+            saveName = nameFile;
+            mediafile = new Media(new File(PATH_MUSICS + nameFile).toURI().toString());
+            mediaplayer = new MediaPlayer(mediafile);
+            mediaplayer.play();
+
         }
+    }
 
 
     /**
