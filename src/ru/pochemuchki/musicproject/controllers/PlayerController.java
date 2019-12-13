@@ -7,8 +7,6 @@ import javafx.scene.image.ImageView;
 import ru.pochemuchki.musicproject.constains.Constains;
 import ru.pochemuchki.musicproject.objects.MyPlayer;
 
-import java.io.File;
-import java.net.MalformedURLException;
 
 public class PlayerController implements Constains {
     MyPlayer myPlayer;
@@ -28,10 +26,13 @@ public class PlayerController implements Constains {
     @FXML
     private void pauseMusicButton() {
         listenMusicButton.setDisable(false);
-        stopMusicButton.setDisable(true);
+        stopMusicButton.setDisable(false);
         pauseMusicButton.setDisable(true);
         deleteFromPlayerButton.setDisable(false);
         myPlayer.pause();
+    }
+    void setMyPlayer(MyPlayer myPlayer) {
+        this.myPlayer = myPlayer;
     }
 
     @FXML
@@ -44,11 +45,11 @@ public class PlayerController implements Constains {
     }
 
     @FXML
-    public void listenMusicButton() {
+    private void listenMusicButton() {
         listenMusicButton.setDisable(true);
         stopMusicButton.setDisable(false);
         pauseMusicButton.setDisable(false);
-        deleteFromPlayerButton.setDisable(true);
+        deleteFromPlayerButton.setDisable(false);
         myPlayer.on();
     }
 
@@ -59,19 +60,7 @@ public class PlayerController implements Constains {
         listenMusicButton.setDisable(true);
         pauseMusicButton.setDisable(true);
         deleteFromPlayerButton.setDisable(true);
-        imagePlayer.setImage(myPlayer.getIconMusic().getImage());
-        nameMusicAtPlayer.setText(myPlayer.getNameMusic().getText());
-    }
-
-    @FXML
-    public void initialize() {
-        myPlayer = new MyPlayer();
-        try {
-            imagePlayer.setImage(
-                    new javafx.scene.image.Image(
-                            new File(BASE_IMAGE_JPG_NOT_FOUND_MUSIC).toURI().toURL().toString()));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        myPlayer.setBaseSettingPlayer();
+        myPlayer.off();
     }
 }

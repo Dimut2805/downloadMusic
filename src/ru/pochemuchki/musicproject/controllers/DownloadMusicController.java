@@ -18,7 +18,6 @@ import java.util.List;
 
 public class DownloadMusicController implements Constains {
     DownloadsSource download = new DownloadsSource();
-    @FXML
     MyMusicController myMusicController;
     @FXML
     VBox vboxContentDownloadScrollPane;
@@ -26,6 +25,11 @@ public class DownloadMusicController implements Constains {
     String urlSection;
     @FXML
     public ComboBox<String> sections;
+
+    public void setMyMusicController(MyMusicController myMusicController) {
+        this.myMusicController = myMusicController;
+    }
+
     private void downloadMusicButton(AttributesMusic attributes) {
         Task<Void> task = new Task<Void>() {
             @Override
@@ -42,10 +46,12 @@ public class DownloadMusicController implements Constains {
         };
         new Thread(task).start();
     }
+
     @FXML
     private void getComboBox() {
         urlSection = HASH_MAP_SECTIONS.get(sections.getValue());
     }
+
     @FXML
     private void clickFindMusicOnSite() {
         if (vboxContentDownloadScrollPane.getChildren().size() != 0) {

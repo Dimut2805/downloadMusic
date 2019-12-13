@@ -4,6 +4,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import ru.pochemuchki.musicproject.constains.Constains;
+import ru.pochemuchki.musicproject.constains.ResourseObjectsConstains;
 
 import java.io.File;
 
@@ -15,7 +16,7 @@ import java.io.File;
  * stopPlay - Предназначен для остановки плеера
  * removeImage - предназначен для удаления картинок
  */
-public class JobWithSource implements Constains {
+public class JobWithSource implements Constains, ResourseObjectsConstains {
     Media mediafile = null;
     MediaPlayer mediaplayer = null;
     Duration CurrentTime = null;
@@ -71,7 +72,7 @@ public class JobWithSource implements Constains {
      * @param nameImg - имя картики
      */
     public static void removeImage(String nameImg) {
-        File imageFile = new File(PATH_IMAGE + "\\" + nameImg);
+        File imageFile = new File(BASE_DIR_DOWNLOADER_MUSIC_PICTURE + nameImg);
         imageFile.delete();
     }
 }
