@@ -1,4 +1,4 @@
-package ru.pochemuchki.musicproject.objects;
+package ru.pochemuchki.musicproject.model;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;

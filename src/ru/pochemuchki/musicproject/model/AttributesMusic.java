@@ -1,4 +1,4 @@
-package ru.pochemuchki.musicproject.objects;
+package ru.pochemuchki.musicproject.model;
 
 public class AttributesMusic {
     private String author, nameMusic, urlMusic, urlImage;

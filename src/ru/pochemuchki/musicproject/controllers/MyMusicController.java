@@ -11,7 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import ru.pochemuchki.musicproject.constains.Constains;
-import ru.pochemuchki.musicproject.objects.MyPlayer;
+import ru.pochemuchki.musicproject.model.MyPlayer;
 import ru.pochemuchki.musicproject.utils.DirectoryUtils;
 
 import java.io.File;
@@ -91,9 +91,9 @@ public class MyMusicController implements Constains {
         playerController.deleteFromPlayerButton.setDisable(false);
         playerController.pauseMusicButton.setDisable(true);
         playerController.stopMusicButton.setDisable(true);
-        myPlayer.setNameMusic(nameMusic);
+        myPlayer.getTrackPlayer().getName().setText(nameMusic);
         try {
-            myPlayer.setIconMusic(new Image(fileIconPlayer(nameMusic).toURI().toURL().toString()));
+            myPlayer.getTrackPlayer().getIcon().setImage(new Image(fileIconPlayer(nameMusic).toURI().toURL().toString()));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

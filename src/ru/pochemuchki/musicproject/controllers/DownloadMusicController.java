@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import ru.pochemuchki.musicproject.DownloadsSource;
 import ru.pochemuchki.musicproject.constains.Constains;
-import ru.pochemuchki.musicproject.objects.AttributesMusic;
+import ru.pochemuchki.musicproject.model.AttributesMusic;
 import ru.pochemuchki.musicproject.utils.FindAttributeMusic;
 
 import java.io.IOException;

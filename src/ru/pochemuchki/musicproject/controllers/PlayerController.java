@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import ru.pochemuchki.musicproject.constains.Constains;
-import ru.pochemuchki.musicproject.objects.MyPlayer;
+import ru.pochemuchki.musicproject.model.MyPlayer;
 
 /**
  * Контроллер работы с  музыкой
@@ -75,7 +75,6 @@ public class PlayerController implements Constains {
      */
     @FXML
     private void deleteFromPlayerButton() {
-        myPlayer.setBaseSettingPlayer();
         stopMusicButton.setDisable(true);
         listenMusicButton.setDisable(true);
         pauseMusicButton.setDisable(true);

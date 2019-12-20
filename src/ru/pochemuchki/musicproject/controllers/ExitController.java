@@ -9,7 +9,7 @@ public class ExitController {
     private AnchorPane window;
 
     /**
-     * Заакрытие прилодения
+     * Закрытие прилодения
      */
     @FXML
     private void clickYes() {

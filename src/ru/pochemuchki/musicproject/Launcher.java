@@ -3,7 +3,7 @@ package ru.pochemuchki.musicproject;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import ru.pochemuchki.musicproject.constains.Constains;
-import ru.pochemuchki.musicproject.objects.GUI;
+import ru.pochemuchki.musicproject.model.GUI;
 
 public class Launcher extends Application implements Constains {
 

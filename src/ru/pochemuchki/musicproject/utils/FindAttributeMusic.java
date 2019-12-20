@@ -5,7 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import ru.pochemuchki.musicproject.constains.Constains;
-import ru.pochemuchki.musicproject.objects.AttributesMusic;
+import ru.pochemuchki.musicproject.model.AttributesMusic;
 
 import java.io.IOException;
 import java.util.ArrayList;
