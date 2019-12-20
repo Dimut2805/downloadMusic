@@ -26,10 +26,20 @@ public class DownloadMusicController implements Constains {
     @FXML
     public ComboBox<String> sections;
 
+    /**
+     * Добавление стороннего контролера в this
+     *
+     * @param myMusicController сторонний контроллер
+     */
     public void setMyMusicController(MyMusicController myMusicController) {
         this.myMusicController = myMusicController;
     }
 
+    /**
+     * Скачивание музыки с сайта
+     *
+     * @param attributes паспортный данные музыки
+     */
     private void downloadMusicButton(AttributesMusic attributes) {
         Task<Void> task = new Task<Void>() {
             @Override
@@ -47,11 +57,17 @@ public class DownloadMusicController implements Constains {
         new Thread(task).start();
     }
 
+    /**
+     * Получение разделов сайта
+     */
     @FXML
     private void getComboBox() {
         urlSection = HASH_MAP_SECTIONS.get(sections.getValue());
     }
 
+    /**
+     * Поиск музыки в разделе сайта
+     */
     @FXML
     private void clickFindMusicOnSite() {
         if (vboxContentDownloadScrollPane.getChildren().size() != 0) {

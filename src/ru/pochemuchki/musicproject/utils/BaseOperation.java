@@ -9,7 +9,9 @@ import static ru.pochemuchki.musicproject.utils.DirectoryUtils.copyFile;
 
 
 public class BaseOperation implements ResourseObjectsConstains, Constains {
-
+    /**
+     * Базовые загрузки при запуске приложения
+     */
     public void installationBaseObjects() {
         if (!findObjectInDir(BASE_DIR_DOWNLOADER_MUSIC_PICTURE)) {
             createDirectory(BASE_DIR_DOWNLOADER_MUSIC_PICTURE);

@@ -19,6 +19,9 @@ public class GUI extends BaseOperation implements Constains, ResourseObjectsCons
         this.window = stage;
     }
 
+    /**
+     * Создание главного окна
+     */
     public void createGUI() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(SRC_FXML_MAIN_LAYOUT));
@@ -40,6 +43,9 @@ public class GUI extends BaseOperation implements Constains, ResourseObjectsCons
         }
     }
 
+    /**
+     * Окно потверждения закрытия приложения
+     */
     public static void exitGUI() {
         Parent root = null;
         try {

@@ -18,6 +18,9 @@ public class MyPlayer implements Constains {
         jobWithSource = new JobWithSource();
     }
 
+    /**
+     * Базовые настройки плеера
+     */
     public void setBaseSettingPlayer() {
         nameMusic.setText("Не выбрано");
         try {
@@ -27,10 +30,18 @@ public class MyPlayer implements Constains {
         }
     }
 
+    /**
+     * Название музыки
+     * @param nameMusic название музыки
+     */
     public void setLabelMusic(Label nameMusic) {
         this.nameMusic = nameMusic;
     }
 
+    /**
+     * Иконка плеера
+     * @param iconMusic иконка плеера
+     */
     public void setImageViewMusic(ImageView iconMusic) {
         this.iconMusic = iconMusic;
         try {

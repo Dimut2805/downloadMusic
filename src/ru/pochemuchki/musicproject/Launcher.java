@@ -12,6 +12,11 @@ public class Launcher extends Application implements Constains {
         Application.launch(args);
     }
 
+    /**
+     * Запуск приложения
+     *
+     * @param window главное окно
+     */
     @Override
     public void start(Stage window) {
         new GUI(window).createGUI();

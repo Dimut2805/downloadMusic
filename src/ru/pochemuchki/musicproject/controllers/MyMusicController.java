@@ -29,6 +29,9 @@ public class MyMusicController implements Constains {
     @FXML
     VBox vboxContentPathMusic;
 
+    /**
+     * Запуск обновления директории скачанной музыкой
+     */
     @FXML
     public void startUpdatePathMusic() {
         Platform.runLater(new Runnable() {
@@ -39,14 +42,30 @@ public class MyMusicController implements Constains {
         });
     }
 
+    /**
+     * Получить плеер из главного контроллера
+     *
+     * @param myPlayer плеер
+     */
     public void setMyPlayer(MyPlayer myPlayer) {
         this.myPlayer = myPlayer;
     }
 
+    /**
+     * Получение ссылки на действующий сторонний контроллер
+     *
+     * @param playerController сторонний контроллер
+     */
     public void setPlayerController(PlayerController playerController) {
         this.playerController = playerController;
     }
 
+    /**
+     * Иконка для плеера
+     *
+     * @param nameMusic названия музыки
+     * @return иконка
+     */
     private File fileIconPlayer(String nameMusic) {
         String namePicture = nameMusic.substring(0, nameMusic.length() - 4);
         return DirectoryUtils.findObjectInDir(BASE_DIR_DOWNLOADER_MUSIC_PICTURE + namePicture) ?
@@ -54,6 +73,13 @@ public class MyMusicController implements Constains {
                 new File(BASE_IMAGE_JPG_BASE_ICON);
     }
 
+    /**
+     * Добавление музыки в плеер
+     *
+     * @param nameMusic   название музыки
+     * @param button      добавления музыки в плеер
+     * @param numberMusic номер музыки в директории пользователя
+     */
     private void addMusicInPlayer(String nameMusic, Button button, int numberMusic) {
         if (intNumberListenMusicButton != null) {
             (((HBox) vboxContentPathMusic.getChildren().get(intNumberListenMusicButton - 1)).getChildren().get(2)).setDisable(false);
@@ -73,6 +99,11 @@ public class MyMusicController implements Constains {
         }
     }
 
+    /**
+     * Удаление музыки
+     *
+     * @param music название музыки
+     */
     private void deleteMusicButton(String music) {
         String namePicture = music.substring(0, music.length() - 4);
         Task<Void> task = new Task<Void>() {
@@ -87,6 +118,9 @@ public class MyMusicController implements Constains {
         new Thread(task).start();
     }
 
+    /**
+     * Обновление директории пользователя
+     */
     private void updatePathMusic() {
         if (vboxContentPathMusic.getChildren().size() != 0) {
             vboxContentPathMusic.getChildren().clear();

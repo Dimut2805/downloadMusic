@@ -15,6 +15,9 @@ public class MainController {
     @FXML
     VBox window;
 
+    /**
+     * Полготовка приложения к работе
+     */
     public void initialize() {
         MyPlayer myPlayer = new MyPlayer();
         myPlayer.setLabelMusic(playerController.nameMusicAtPlayer);
