@@ -1,14 +1,11 @@
 package ru.pochemuchki.musicproject.model;
 
-import javafx.scene.text.Text;
 
-abstract class ButtonAbstract {
-    private Text text;
-    private int numberInList;
+abstract class ButtonAbstract{
+    private String nameButton;
 
-    ButtonAbstract(Text text, int numberInList) {
-        this.text = text;
-        this.numberInList = numberInList;
+    ButtonAbstract(String nameButton) {
+        this.nameButton = nameButton;
     }
 
     abstract void click();

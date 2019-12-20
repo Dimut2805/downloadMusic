@@ -25,7 +25,7 @@ public class DownloadsSource implements Constains {
      * @param src  - сслыка на файл
      * @param name - имя файла
      */
-    public void downloadSong(String src, String name) {
+    public static void downloadSong(String src, String name) {
         try {
             download(src, name + ".mp3");
         } catch (IOException e) {
@@ -56,7 +56,7 @@ public class DownloadsSource implements Constains {
      * @param src       - ссылка на картинку
      * @param nameImage - имя файлв
      */
-    public void downloadImage(String src, String nameImage) throws IOException {
+    public static void downloadImage(String src, String nameImage) throws IOException {
         String path = PATH_IMAGE + "\\DownloaderMusicPicture\\" + nameImage;
         InputStream in;
         URL connection = new URL("https://muzika.vip/"+src);
