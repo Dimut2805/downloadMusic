@@ -126,10 +126,10 @@ public class MyMusicController implements Constains {
         if (vboxContentPathMusic.getChildren().size() != 0) {
             vboxContentPathMusic.getChildren().clear();
         }
-        fillObjectsPathMusic();
+        fillObjects();
     }
 
-    private void fillObjectsPathMusic() {
+    private void fillObjects() {
         ArrayList<String> musicsPath = DirectoryUtils.getMusics();
         int numberMusic = 1;
         for (String music : musicsPath) {
@@ -138,7 +138,7 @@ public class MyMusicController implements Constains {
                     new AttributesPathMyMusicModel(track, new Track(myPlayer.getName(), myPlayer.getIcon()));
             vboxContentPathMusic
                     .getChildren()
-                    .add(modelTrackPathMusic.getObject());
+                    .add(modelTrackPathMusic.getObjectHBox());
             numberMusic++;
         }
 

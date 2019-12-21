@@ -1,15 +1,16 @@
-package ru.pochemuchki.musicproject.model;
+package ru.pochemuchki.musicproject.model.downloadmusic;
 
 import javafx.concurrent.Task;
 import ru.pochemuchki.musicproject.DownloadsSource;
 import ru.pochemuchki.musicproject.abstractclasses.ButtonAbstract;
+import ru.pochemuchki.musicproject.model.AttributesMusic;
 
 import java.io.IOException;
 
-public class DownloadButton extends ButtonAbstract {
+class DownloadButton extends ButtonAbstract {
     private AttributesMusic attributes;
 
-    public DownloadButton(String nameButton, AttributesMusic attributes) {
+    DownloadButton(String nameButton, AttributesMusic attributes) {
         super(nameButton);
         this.attributes = attributes;
     }

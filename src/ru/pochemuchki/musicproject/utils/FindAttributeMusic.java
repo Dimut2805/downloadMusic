@@ -23,12 +23,15 @@ public class FindAttributeMusic implements Constains {
         if (url != null) {
             Document document = createDocumentHTML(url);
             Elements elementsCodeMusics = document.select("ul.unstyled.songs").select("li.item");
+            int numberMusic = 1;
             for (Element element : elementsCodeMusics) {
                 listAttributesMusic.add(new AttributesMusic(
+                        numberMusic,
                         element.select("li.item").attr("data-artist"),
                         element.select("li.item").attr("data-title"),
                         element.select("li.play").attr("data-url"),
                         element.select("img").attr("data-src")));
+                numberMusic++;
             }
         }
         return listAttributesMusic;
