@@ -28,8 +28,8 @@ public class MainController {
 
     private void createPlayer() {
         myPlayer = new MyPlayer();
-        myPlayer.getTrackPlayer().setName(playerController.nameMusicAtPlayer);
-        myPlayer.getTrackPlayer().setIcon(playerController.imagePlayer);
+        myPlayer.setName(playerController.nameMusicAtPlayer);
+        myPlayer.setIcon(playerController.imagePlayer);
         myPlayer.setBaseSettingPlayer();
     }
 

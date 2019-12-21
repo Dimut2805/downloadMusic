@@ -1,25 +1,17 @@
 package ru.pochemuchki.musicproject.model;
 
 import javafx.concurrent.Task;
-import javafx.scene.control.Button;
 import ru.pochemuchki.musicproject.DownloadsSource;
+import ru.pochemuchki.musicproject.abstractclasses.ButtonAbstract;
 
 import java.io.IOException;
 
 public class DownloadButton extends ButtonAbstract {
     private AttributesMusic attributes;
-    private Button downloadButton;
 
     public DownloadButton(String nameButton, AttributesMusic attributes) {
         super(nameButton);
         this.attributes = attributes;
-        downloadButton = new Button(nameButton) {{
-            setOnAction(event -> click());
-        }};
-    }
-
-    public Button getDownloadButton() {
-        return downloadButton;
     }
 
     @Override

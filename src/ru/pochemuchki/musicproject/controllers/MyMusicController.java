@@ -11,7 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import ru.pochemuchki.musicproject.constains.Constains;
-import ru.pochemuchki.musicproject.model.MyPlayer;
+import ru.pochemuchki.musicproject.model.*;
+import ru.pochemuchki.musicproject.model.pathmymusic.AttributesPathMyMusicModel;
 import ru.pochemuchki.musicproject.utils.DirectoryUtils;
 
 import java.io.File;
@@ -91,9 +92,9 @@ public class MyMusicController implements Constains {
         playerController.deleteFromPlayerButton.setDisable(false);
         playerController.pauseMusicButton.setDisable(true);
         playerController.stopMusicButton.setDisable(true);
-        myPlayer.getTrackPlayer().getName().setText(nameMusic);
+        myPlayer.getName().setText(nameMusic);
         try {
-            myPlayer.getTrackPlayer().getIcon().setImage(new Image(fileIconPlayer(nameMusic).toURI().toURL().toString()));
+            myPlayer.getIcon().setImage(new Image(fileIconPlayer(nameMusic).toURI().toURL().toString()));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -125,30 +126,37 @@ public class MyMusicController implements Constains {
         if (vboxContentPathMusic.getChildren().size() != 0) {
             vboxContentPathMusic.getChildren().clear();
         }
+        fillObjectsPathMusic();
+    }
+
+    private void fillObjectsPathMusic() {
         ArrayList<String> musicsPath = DirectoryUtils.getMusics();
         int numberMusic = 1;
         for (String music : musicsPath) {
-            Label nameMusic = new Label(numberMusic + ". " + music) {{
-                setFont(Font.font(15));
-            }};
-            ImageView imageView = null;
-            try {
-                imageView = new ImageView(new Image(fileIconPlayer(music).toURI().toURL().toString())) {{
-                    setFitWidth(50);
-                    setFitHeight(50);
-                }};
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            int finalNumberMusic = numberMusic;
-            Button buttonListenMusic = new Button("Слушать") {{
-                setOnAction(event -> addMusicInPlayer(music, ((Button) ((HBox) vboxContentPathMusic.getChildren().get(finalNumberMusic - 1)).getChildren().get(2)), finalNumberMusic));
-            }};
-            Button buttonDeleteMusic = new Button("Удалить") {{
-                setOnAction(event -> deleteMusicButton(music));
-            }};
-            vboxContentPathMusic.getChildren().add(new HBox(10, imageView, nameMusic, buttonListenMusic, buttonDeleteMusic));
+            Track track = createTrack(music);
+            AttributesPathMyMusicModel modelTrackPathMusic =
+                    new AttributesPathMyMusicModel(track, new Track(myPlayer.getName(), myPlayer.getIcon()));
+            vboxContentPathMusic
+                    .getChildren()
+                    .add(modelTrackPathMusic.getObject());
             numberMusic++;
         }
+
+    }
+
+    private Track createTrack(String music) {
+        Label nameMusic = new Label(music) {{
+            setFont(Font.font(15));
+        }};
+        ImageView imageView = null;
+        try {
+            imageView = new ImageView(new Image(fileIconPlayer(music).toURI().toURL().toString())) {{
+                setFitWidth(50);
+                setFitHeight(50);
+            }};
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return new Track(nameMusic, imageView);
     }
 }

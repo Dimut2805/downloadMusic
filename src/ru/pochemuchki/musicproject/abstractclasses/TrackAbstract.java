@@ -1,11 +1,12 @@
-package ru.pochemuchki.musicproject.model;
+package ru.pochemuchki.musicproject.abstractclasses;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
-public class TrackPlayer {
+public abstract class TrackAbstract {
     private ImageView icon;
     private Label name;
+
     public void setIcon(ImageView icon) {
         this.icon = icon;
     }

@@ -58,7 +58,7 @@ public class DownloadMusicController implements Constains {
             vboxContentDownloadScrollPane
                     .getChildren()
                     .add(new HBox(10,
-                            nameMusic, downloadButton.getDownloadButton()));
+                            nameMusic, downloadButton.getButton()));
             numberMusic++;
             myMusicController.startUpdatePathMusic();
         }
