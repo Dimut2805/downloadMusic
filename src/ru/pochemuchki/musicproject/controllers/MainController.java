@@ -2,11 +2,9 @@ package ru.pochemuchki.musicproject.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
-import ru.pochemuchki.musicproject.model.MyPlayer;
 
 
 public class MainController {
-    private MyPlayer myPlayer;
     @FXML
     DownloadMusicController downloadMusicController;
     @FXML

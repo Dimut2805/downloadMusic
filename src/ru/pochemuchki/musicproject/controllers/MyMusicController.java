@@ -1,13 +1,10 @@
 package ru.pochemuchki.musicproject.controllers;
 
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import ru.pochemuchki.musicproject.constains.Constains;
@@ -20,7 +17,6 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class MyMusicController implements Constains {
-    Integer intNumberListenMusicButton;
     @FXML
     PlayerController playerController;
     @FXML
@@ -73,19 +69,14 @@ public class MyMusicController implements Constains {
 
     private void fillObjects() {
         ArrayList<String> musicsPath = DirectoryUtils.getMusics();
-        int numberMusic = 1;
         for (String music : musicsPath) {
-            Track track = createTrack(music);
             AttributesPathMyMusicModel modelTrackPathMusic =
-                    new AttributesPathMyMusicModel(track,
-                            new Track(playerController.buttonsModelPlayer.getMyPlayer().getName(),
-                                    playerController.buttonsModelPlayer.getMyPlayer().getIcon()));
+                    new AttributesPathMyMusicModel(createTrack(music),
+                            playerController.buttonsModelPlayer);
             vboxContentPathMusic
                     .getChildren()
                     .add(modelTrackPathMusic.getObjectHBox());
-            numberMusic++;
         }
-
     }
 
     private Track createTrack(String music) {

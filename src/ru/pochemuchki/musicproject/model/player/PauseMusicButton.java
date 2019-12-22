@@ -5,13 +5,13 @@ import ru.pochemuchki.musicproject.model.MyPlayer;
 
 public class PauseMusicButton extends JobButtonPlayer {
 
-    PauseMusicButton(Button button, MyPlayer myPlayer) {
-        super(button, myPlayer);
-        getButton().setDisable(false);
+    PauseMusicButton(Button button, MyPlayer myPlayer, ButtonsModelPlayer buttonsModelPlayer) {
+        super(button, myPlayer, buttonsModelPlayer);
     }
 
     @Override
     public void click() {
-
+        getMyPlayer().pause();
+        getButtonsModelPlayer().clickPause();
     }
 }

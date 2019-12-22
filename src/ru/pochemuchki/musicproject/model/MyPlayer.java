@@ -4,7 +4,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ru.pochemuchki.musicproject.JobWithSource;
-import ru.pochemuchki.musicproject.abstractclasses.TrackAbstract;
 import ru.pochemuchki.musicproject.constains.Constains;
 
 import java.io.File;
@@ -17,6 +16,7 @@ public class MyPlayer extends Track implements Constains {
         super(name, icon);
         jobWithSource = new JobWithSource();
     }
+
     /**
      * Базовые настройки плеера
      */
@@ -33,13 +33,15 @@ public class MyPlayer extends Track implements Constains {
         jobWithSource.pausePlayer();
     }
 
-    public Void on() {
+    public void on() {
         jobWithSource.startPlayer(getName().getText());
-        return null;
     }
 
     public void off() {
         jobWithSource.stopPlayer();
     }
-    public void close() {}
+
+    public void close() {
+        setBaseSettingPlayer();
+    }
 }

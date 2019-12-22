@@ -3,21 +3,23 @@ package ru.pochemuchki.musicproject.model.pathmymusic;
 
 import ru.pochemuchki.musicproject.abstractclasses.ButtonAbstract;
 import ru.pochemuchki.musicproject.model.Track;
+import ru.pochemuchki.musicproject.model.player.ButtonsModelPlayer;
 
 class AddMusicAtPlayerButton extends ButtonAbstract {
     private Track trackObject;
-    private Track trackPlayer;
+    private ButtonsModelPlayer buttonsModelPlayer;
 
-    AddMusicAtPlayerButton(String nameButton, Track trackObject, Track trackPlayer) {
+    AddMusicAtPlayerButton(String nameButton, Track trackObject, ButtonsModelPlayer buttonsModelPlayer) {
         super(nameButton);
         this.trackObject = trackObject;
-        this.trackPlayer = trackPlayer;
+        this.buttonsModelPlayer = buttonsModelPlayer;
     }
 
 
     @Override
     public void click() {
-        trackPlayer.getIcon().setImage(trackObject.getIcon().getImage());
-        trackPlayer.getName().setText(trackObject.getName().getText());
+        buttonsModelPlayer.getMyPlayer().getIcon().setImage(trackObject.getIcon().getImage());
+        buttonsModelPlayer.getMyPlayer().getName().setText(trackObject.getName().getText());
+        buttonsModelPlayer.clickAdd();
     }
 }

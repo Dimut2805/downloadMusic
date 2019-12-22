@@ -12,10 +12,10 @@ public class ButtonsModelPlayer {
 
     public ButtonsModelPlayer(ButtonsPlayerObject buttons, Track trackPlayer) {
         myPlayer = new MyPlayer(trackPlayer.getName(), trackPlayer.getIcon());
-        stopMusicButton = new StopMusicButton(buttons.getStopMusicButton(), myPlayer);
-        pauseMusicButton = new PauseMusicButton(buttons.getPauseMusicButton(), myPlayer);
-        startMusicButton = new StartMusicButton(buttons.getListenMusicButton(), myPlayer);
-        closeMusicButton = new CloseMusicButton(buttons.getDeleteFromPlayerButton(), myPlayer);
+        stopMusicButton = new StopMusicButton(buttons.getStopMusicButton(), myPlayer, this);
+        pauseMusicButton = new PauseMusicButton(buttons.getPauseMusicButton(), myPlayer, this);
+        startMusicButton = new StartMusicButton(buttons.getListenMusicButton(), myPlayer, this);
+        closeMusicButton = new CloseMusicButton(buttons.getDeleteFromPlayerButton(), myPlayer, this);
     }
 
     public StopMusicButton getStopMusicButton() {
@@ -36,5 +36,40 @@ public class ButtonsModelPlayer {
 
     public MyPlayer getMyPlayer() {
         return myPlayer;
+    }
+
+    void clickStop() {
+        getStopMusicButton().getButton().setDisable(true);
+        getStartMusicButton().getButton().setDisable(false);
+        getPauseMusicButton().getButton().setDisable(true);
+        getCloseMusicButton().getButton().setDisable(false);
+    }
+
+    public void clickAdd() {
+        getStopMusicButton().getButton().setDisable(true);
+        getStartMusicButton().getButton().setDisable(false);
+        getPauseMusicButton().getButton().setDisable(true);
+        getCloseMusicButton().getButton().setDisable(false);
+    }
+
+    void clickStart() {
+        getStopMusicButton().getButton().setDisable(false);
+        getStartMusicButton().getButton().setDisable(true);
+        getPauseMusicButton().getButton().setDisable(false);
+        getCloseMusicButton().getButton().setDisable(true);
+    }
+
+    void clickClose() {
+        getStopMusicButton().getButton().setDisable(true);
+        getStartMusicButton().getButton().setDisable(true);
+        getPauseMusicButton().getButton().setDisable(true);
+        getCloseMusicButton().getButton().setDisable(true);
+    }
+
+    void clickPause() {
+        getStopMusicButton().getButton().setDisable(false);
+        getStartMusicButton().getButton().setDisable(false);
+        getPauseMusicButton().getButton().setDisable(true);
+        getCloseMusicButton().getButton().setDisable(false);
     }
 }

@@ -5,13 +5,13 @@ import ru.pochemuchki.musicproject.model.MyPlayer;
 
 public class StartMusicButton extends JobButtonPlayer {
 
-    StartMusicButton(Button button, MyPlayer myPlayer) {
-        super(button, myPlayer);
-        getButton().setDisable(false);
+    StartMusicButton(Button button, MyPlayer myPlayer, ButtonsModelPlayer buttonsModelPlayer) {
+        super(button, myPlayer, buttonsModelPlayer);
     }
 
     @Override
     public void click() {
-        getButton().setDisable(true);
+        getMyPlayer().on();
+        getButtonsModelPlayer().clickStart();
     }
 }
