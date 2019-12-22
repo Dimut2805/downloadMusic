@@ -5,13 +5,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import ru.pochemuchki.musicproject.constains.Constains;
-import ru.pochemuchki.musicproject.model.MyPlayer;
+import ru.pochemuchki.musicproject.model.player.ButtonsModelPlayer;
+import ru.pochemuchki.musicproject.model.player.ButtonsPlayerObject;
+import ru.pochemuchki.musicproject.model.Track;
 
 /**
  * Контроллер работы с  музыкой
  */
 public class PlayerController implements Constains {
-    MyPlayer myPlayer;
+    ButtonsModelPlayer buttonsModelPlayer;
     @FXML
     Button stopMusicButton;
     @FXML
@@ -30,20 +32,7 @@ public class PlayerController implements Constains {
      */
     @FXML
     private void pauseMusicButton() {
-        listenMusicButton.setDisable(false);
-        stopMusicButton.setDisable(false);
-        pauseMusicButton.setDisable(true);
-        deleteFromPlayerButton.setDisable(false);
-        myPlayer.pause();
-    }
-
-    /**
-     * Получение плеера из главного контроллера
-     *
-     * @param myPlayer плеер
-     */
-    void setMyPlayer(MyPlayer myPlayer) {
-        this.myPlayer = myPlayer;
+        buttonsModelPlayer.getPauseMusicButton().click();
     }
 
     /**
@@ -51,11 +40,7 @@ public class PlayerController implements Constains {
      */
     @FXML
     void stopMusicButton() {
-        listenMusicButton.setDisable(false);
-        stopMusicButton.setDisable(false);
-        pauseMusicButton.setDisable(false);
-        deleteFromPlayerButton.setDisable(false);
-        myPlayer.off();
+        buttonsModelPlayer.getStopMusicButton().click();
     }
 
     /**
@@ -63,11 +48,7 @@ public class PlayerController implements Constains {
      */
     @FXML
     private void listenMusicButton() {
-        listenMusicButton.setDisable(true);
-        stopMusicButton.setDisable(false);
-        pauseMusicButton.setDisable(false);
-        deleteFromPlayerButton.setDisable(false);
-        myPlayer.on();
+        buttonsModelPlayer.getStartMusicButton().click();
     }
 
     /**
@@ -75,11 +56,17 @@ public class PlayerController implements Constains {
      */
     @FXML
     private void deleteFromPlayerButton() {
-        stopMusicButton.setDisable(true);
-        listenMusicButton.setDisable(true);
-        pauseMusicButton.setDisable(true);
-        deleteFromPlayerButton.setDisable(true);
-        myPlayer.setBaseSettingPlayer();
-        myPlayer.off();
+        buttonsModelPlayer.getCloseMusicButton().click();
+    }
+
+    @FXML
+    public void initialize() {
+        buttonsModelPlayer = new ButtonsModelPlayer(
+                new ButtonsPlayerObject(
+                        stopMusicButton,
+                        deleteFromPlayerButton,
+                        listenMusicButton,
+                        pauseMusicButton),
+                new Track(nameMusicAtPlayer, imagePlayer));
     }
 }

@@ -20,23 +20,10 @@ public class MainController {
      * Полготовка приложения к работе
      */
     public void initialize() {
-        createPlayer();
-        sendPlayerForControllers();
         sendControllersForControllers();
         myMusicController.startUpdatePathMusic();
     }
 
-    private void createPlayer() {
-        myPlayer = new MyPlayer();
-        myPlayer.setName(playerController.nameMusicAtPlayer);
-        myPlayer.setIcon(playerController.imagePlayer);
-        myPlayer.setBaseSettingPlayer();
-    }
-
-    private void sendPlayerForControllers() {
-        myMusicController.setMyPlayer(myPlayer);
-        playerController.setMyPlayer(myPlayer);
-    }
 
     private void sendControllersForControllers() {
         downloadMusicController.setMyMusicController(myMusicController);

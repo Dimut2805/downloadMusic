@@ -4,8 +4,11 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <HBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pochemuchki.musicproject.controllers.PlayerController">
-    <ImageView fx:id="imagePlayer" fitWidth="50" fitHeight="50"/>
+    <ImageView fx:id="imagePlayer" fitWidth="50" fitHeight="50">
+        <Image url="/ru/pochemuchki/musicproject/res/drawable/baseIcons/BaseIconNotFoundMusic.jpg"/>
+    </ImageView>
     <VBox>
         <Label text="Не выбрано" fx:id="nameMusicAtPlayer"/>
         <HBox>

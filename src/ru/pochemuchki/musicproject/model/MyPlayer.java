@@ -1,6 +1,8 @@
 package ru.pochemuchki.musicproject.model;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import ru.pochemuchki.musicproject.JobWithSource;
 import ru.pochemuchki.musicproject.abstractclasses.TrackAbstract;
 import ru.pochemuchki.musicproject.constains.Constains;
@@ -8,10 +10,11 @@ import ru.pochemuchki.musicproject.constains.Constains;
 import java.io.File;
 import java.net.MalformedURLException;
 
-public class MyPlayer extends TrackAbstract implements Constains {
+public class MyPlayer extends Track implements Constains {
     private JobWithSource jobWithSource;
 
-    public MyPlayer() {
+    public MyPlayer(Label name, ImageView icon) {
+        super(name, icon);
         jobWithSource = new JobWithSource();
     }
     /**
@@ -30,8 +33,9 @@ public class MyPlayer extends TrackAbstract implements Constains {
         jobWithSource.pausePlayer();
     }
 
-    public void on() {
+    public Void on() {
         jobWithSource.startPlayer(getName().getText());
+        return null;
     }
 
     public void off() {

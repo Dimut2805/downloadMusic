@@ -19,11 +19,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-import static ru.pochemuchki.musicproject.JobWithSource.removeImage;
-import static ru.pochemuchki.musicproject.utils.DirectoryUtils.deleteMusic;
-
 public class MyMusicController implements Constains {
-    MyPlayer myPlayer;
     Integer intNumberListenMusicButton;
     @FXML
     PlayerController playerController;
@@ -41,15 +37,6 @@ public class MyMusicController implements Constains {
                 updatePathMusic();
             }
         });
-    }
-
-    /**
-     * Получить плеер из главного контроллера
-     *
-     * @param myPlayer плеер
-     */
-    public void setMyPlayer(MyPlayer myPlayer) {
-        this.myPlayer = myPlayer;
     }
 
     /**
@@ -75,51 +62,6 @@ public class MyMusicController implements Constains {
     }
 
     /**
-     * Добавление музыки в плеер
-     *
-     * @param nameMusic   название музыки
-     * @param button      добавления музыки в плеер
-     * @param numberMusic номер музыки в директории пользователя
-     */
-    private void addMusicInPlayer(String nameMusic, Button button, int numberMusic) {
-        if (intNumberListenMusicButton != null) {
-            (((HBox) vboxContentPathMusic.getChildren().get(intNumberListenMusicButton - 1)).getChildren().get(2)).setDisable(false);
-            myPlayer.off();
-        }
-        button.setDisable(true);
-        intNumberListenMusicButton = numberMusic;
-        playerController.listenMusicButton.setDisable(false);
-        playerController.deleteFromPlayerButton.setDisable(false);
-        playerController.pauseMusicButton.setDisable(true);
-        playerController.stopMusicButton.setDisable(true);
-        myPlayer.getName().setText(nameMusic);
-        try {
-            myPlayer.getIcon().setImage(new Image(fileIconPlayer(nameMusic).toURI().toURL().toString()));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Удаление музыки
-     *
-     * @param music название музыки
-     */
-    private void deleteMusicButton(String music) {
-        String namePicture = music.substring(0, music.length() - 4);
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                deleteMusic(music);
-                removeImage(namePicture);
-                startUpdatePathMusic();
-                return null;
-            }
-        };
-        new Thread(task).start();
-    }
-
-    /**
      * Обновление директории пользователя
      */
     private void updatePathMusic() {
@@ -135,7 +77,9 @@ public class MyMusicController implements Constains {
         for (String music : musicsPath) {
             Track track = createTrack(music);
             AttributesPathMyMusicModel modelTrackPathMusic =
-                    new AttributesPathMyMusicModel(track, new Track(myPlayer.getName(), myPlayer.getIcon()));
+                    new AttributesPathMyMusicModel(track,
+                            new Track(playerController.buttonsModelPlayer.getMyPlayer().getName(),
+                                    playerController.buttonsModelPlayer.getMyPlayer().getIcon()));
             vboxContentPathMusic
                     .getChildren()
                     .add(modelTrackPathMusic.getObjectHBox());

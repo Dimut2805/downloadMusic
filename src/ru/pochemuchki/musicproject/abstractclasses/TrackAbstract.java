@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
 public abstract class TrackAbstract {
     private ImageView icon;
     private Label name;
-
     public void setIcon(ImageView icon) {
         this.icon = icon;
     }
